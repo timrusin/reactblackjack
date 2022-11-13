@@ -14,7 +14,8 @@
 
 @media screen and (max-width: 500px) {
   .game-title {
-    font-size: 10vw;
+    font-size: 40px;
+    margin-bottom: 20px;
   }
 
   .play-button{
@@ -35,16 +36,17 @@
     width: 150px;
     height: 225px;
     border-radius: 5px;
+    filter: drop-shadow(0px 0px 30px rgb(0, 0, 0));
   }
 
   .card-one {
-    transform: rotate(-25deg);
+    transform: rotate(-30deg);
     position: absolute;
     right: 150px;
   }
 
   .card-two {
-    transform: rotate(25deg);
+    transform: rotate(30deg);
     position: absolute;
     left: 150px;
   }
