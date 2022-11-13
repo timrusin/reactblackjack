@@ -53,6 +53,12 @@ const Game = () => {
             <Card />
         </div>
 
+        <div className={hitStand ? 'hit-stand fade' : 'hidden'}>
+            <h2>Total: 20</h2>
+            <button> HIT </button>
+            <button> STAND </button>
+        </div>
+
 
 
     </div>
