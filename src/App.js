@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
+import { Link, Routes, Route } from 'react-router-dom'
 import './App.css';
+import Game from './Game';
 
 function App() {
   const [randomOpacity, setRandomOpacity] = useState()
@@ -34,8 +36,11 @@ function App() {
   return (
     <div className="App">
       <h1 className='game-title' >BLACK JACK REACT</h1>
-      <button className='play-button' style={{opacity: randomOpacity}}>PLAY</button>
+
+      <Link to='/game'><button className='play-button' style={{opacity: randomOpacity}}>PLAY</button></Link>
+        
         <div className='cards-container'>
+
           <div className="cards inner-border card-one ">
             <div className="top-left">
                 <h1 style={{ color: color }} className="card-value">
@@ -51,6 +56,7 @@ function App() {
               <i style={{ color: color }} className={`fa-solid ${suit}`}></i>
              </div>
           </div>
+
           <div className="cards inner-border card-two">
             <div className="top-left">
                 <h1 style={{ color: colorTwo }} className="card-value">
@@ -67,6 +73,9 @@ function App() {
              </div>
           </div>
         </div>
+        <Routes>
+          <Route path="/game" element={<Game/>} />
+        </Routes>
     </div>
   );
 }

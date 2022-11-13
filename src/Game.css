@@ -1,0 +1,8 @@
+.game-page-container {
+    margin-top: -190px;
+    z-index: 10;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('/Users/timrusin/Documents/coding/reactblackjack/public/images/tabletest.jpeg');
+    background-size: cover;
+}
