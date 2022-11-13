@@ -31,13 +31,13 @@
   
     .card-one {
       transform: rotate(-30deg);
-      position: absolute;
+      position: fixed;
       right: 150px;
     }
   
     .card-two {
       transform: rotate(30deg);
-      position: absolute;
+      position: fixed;
       left: 150px;
     }
   

@@ -3,7 +3,8 @@ import './Game.css'
 
 const Game = () => {
     const [cash, setCash] = useState(1000)
-    const [currentBet, setCurrentBet] = useState(null)
+    const [currentBet, setCurrentBet] = useState(10)
+    const [betPlaced, setBetPlaced] = useState(false)
 
     const handleChange = (e) => {
         setCurrentBet(e.target.value)
@@ -11,6 +12,7 @@ const Game = () => {
 
     const placeBet = () => {
         setCash(cash - currentBet)
+        setBetPlaced(true)
     }
 
     console.log(currentBet);
@@ -26,7 +28,8 @@ const Game = () => {
                     <option value="500">$500</option>
                 </select>
             </form>
-                <button onClick={placeBet}>PLACE BET</button>
+        {!betPlaced && <button className='bet-button' onClick={placeBet}>PLACE BET</button>}
+        {!betPlaced && <h1 className='place-bet'>Place Your Bet</h1>}
     </div>
   )
 }
