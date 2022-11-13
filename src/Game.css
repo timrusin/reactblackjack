@@ -12,3 +12,20 @@
     font-weight: bold;
     font-size: 30px;
 }
+
+.bet {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    align-items: end;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 100px;
+    font-size: 50px;
+}
+
+.bet-form {
+    width: 55px;
+    font-size: 15px;
+}
