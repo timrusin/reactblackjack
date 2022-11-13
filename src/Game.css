@@ -38,8 +38,27 @@
 }
 
 .place-bet {
-    position: fixed;
+    position: absolute;
     top: 20px;
     left: 20px;
     color: #000;
+}
+
+.card-hidding {
+    position: absolute;
+    top: -400px;
+}
+
+.first-card {
+    position: absolute;
+    top: 400px;
+    transform: rotate(900deg);
+    transition: all ease-in 400ms;
+}
+.second-card {
+    position: absolute;
+    top: 400px;
+    left: 50px;
+    transform: rotate(900deg);
+    transition: all ease-in 400ms;
 }
