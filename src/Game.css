@@ -53,14 +53,23 @@
     position: absolute;
     top: 400px;
     transform: rotate(900deg);
-    transition: all ease-in 400ms;
+    transition: all ease-in 600ms;
 }
+
 .second-card {
     position: absolute;
     top: 400px;
     left: 50px;
     transform: rotate(900deg);
-    transition: all ease-in 400ms;
+    transition: all ease-in 600ms;
+}
+
+.third-card {
+    position: absolute;
+    top: 400px;
+    left: 100px;
+    transform: rotate(900deg);
+    transition: all ease-in 600ms;
 }
 
 .hit-stand {

@@ -8,7 +8,13 @@ const Game = () => {
     const [betPlaced, setBetPlaced] = useState(false)
     const [cardOne, setCardOne]= useState(false)
     const [cardTwo, setCardTwo]= useState(false)
+    const [card1, setCard1]= useState(false)
+    const [card11, setCard11]= useState(false)
+    const [card111, setCard111]= useState(false)
+    const [hitCard, setHitCard]= useState('setCard')
     const [hitStand, setHitStand] =useState(false)
+
+    console.log(hitCard);
 
     const handleChange = (e) => {
         setCurrentBet(e.target.value)
@@ -27,6 +33,11 @@ const Game = () => {
           }
             setCardOne(true)
             setTimeout(CardTwo,400)
+    }
+
+    const Hit = () =>{
+        setHitCard(hitCard + 1)
+        
     }
 
 
@@ -52,10 +63,19 @@ const Game = () => {
         <div className={cardTwo ? 'second-card' : 'card-hidding'}>
             <Card />
         </div>
+        <div className={card1 ? 'third-card' : 'card-hidding'}>
+            <Card />
+        </div>
+        <div className={card11 ? 'fourth-card' : 'card-hidding'}>
+            <Card />
+        </div>
+        <div className={card11 ? 'fifth-card' : 'card-hidding'}>
+            <Card />
+        </div>
 
         <div className={hitStand ? 'hit-stand fade' : 'hidden'}>
             <h2>Total: 20</h2>
-            <button> HIT </button>
+            <button onClick={Hit}> HIT </button>
             <button> STAND </button>
         </div>
 
