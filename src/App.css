@@ -61,7 +61,7 @@
     font-size: 15px;
   }
 
-  .D{
+  .card-value{
     margin-bottom: 0px;
     font-size: 30px;
 }
@@ -71,13 +71,12 @@
     font-size: 50px;
     top: 15px;
     left: 48px;
-
-
   }
 
   .bottom-right{
     position: absolute;
-    left: 122px;
+    text-align: center;
+    left: 125px;
     top: 170px;
     font-family: serif;
     font-size: 15px;
