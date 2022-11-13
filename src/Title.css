@@ -2,8 +2,6 @@
     font-family: 'Nabla', cursive;
   }
 
-
-
   @media screen and (max-width: 800px) {
     .game-title {
       font-size: 40px;

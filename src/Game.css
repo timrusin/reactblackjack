@@ -1,7 +1,14 @@
 .game-page-container {
-    z-index: 10;
     width: 100vw;
     height: 100vh;
     background-image: url('/Users/timrusin/Documents/coding/reactblackjack/public/images/tabletest.jpeg');
     background-size: cover;
+}
+
+.cash {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    font-weight: bold;
+    font-size: 30px;
 }
