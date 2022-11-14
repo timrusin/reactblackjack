@@ -43,12 +43,13 @@ const Game = () => {
             </form>
         {!betPlaced && <button className='bet-button' onClick={placeBet}>PLACE BET</button>}
         {!betPlaced && <h1 className='place-bet'>Place Your Bet</h1>}
-
-        <div className={cardOne ? 'first-card' : 'card-hidding'}>
-            <Card />
-        </div>
-        <div className={cardTwo ? 'second-card' : 'card-hidding'}>
-            <Card />
+        <div className='player-card-container'>
+            <div className={cardOne ? 'first-card' : 'card-hidding'}>
+                <Card />
+            </div>
+            <div className={cardTwo ? 'second-card' : 'card-hidding'}>
+                <Card />
+            </div>
         </div>
 
         <div className={hitStand ? 'hit-stand fade' : 'hidden'}>
@@ -56,9 +57,6 @@ const Game = () => {
             <button> HIT </button>
             <button> STAND </button>
         </div>
-
-
-
     </div>
   )
 }
