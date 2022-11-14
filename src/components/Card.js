@@ -5,17 +5,17 @@ const Card = (props) => {
   return (
     <div className="cards inner-border">
     <div className="top-left">
-        <h1 style={{ color: "red" }} className="card-value">
-          K
+        <h1 style={{ color: props.color }} className="card-value">
+          {props.char}
         </h1> 
-      <i style={{ color: "red" }} className="fa-solid fa-spade"></i>
+      <i style={{ color: props.color }} className={`fa-solid ${props.suit}`}></i>
     </div>
-    <i style={{ color: "red" }} className="fa-solid fa-spade center-suit"></i>
+    <i style={{ color: props.color }} className={`fa-solid ${props.suit} center-suit`}></i>
     <div className="bottom-right">
-        <h1 style={{ color: "red" }} className="card-value">
-          K
+        <h1 style={{ color: props.color }} className="card-value">
+          {props.char}
         </h1>
-      <i style={{ color: "red" }} className="fa-solid fa-spade"></i>
+      <i style={{ color: props.color }} className={`fa-solid ${props.suit}`}></i>
      </div>
   </div>
   )
