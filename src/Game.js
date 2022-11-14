@@ -15,6 +15,8 @@ const Game = () => {
     const [blackJack, setBlackJack] = useState(false)
     const [bust, setBust] = useState(false)
 
+    
+
     const handleChange = (e) => {
         setCurrentBet(e.target.value)
     }
@@ -26,13 +28,13 @@ const Game = () => {
     }
 
     const dealCards = () =>{
+        Deck.sort((a,b) => 0.5 - Math.random());
         setCardOne(false)
         setCardTwo(false)
         setHitIndex(1)
         setBlackJack(false)
         setBust(false)
-        
-        Deck.sort((a,b) => 0.5 - Math.random());
+
         const CardTwo = () => {
             setCardTwo(true)
             setTimeout(()=>{setHitStand(true)},400)
@@ -51,7 +53,6 @@ const Game = () => {
     const Hit = () =>{
         setHitIndex(hitIndex + 1)
         setTotal(total + Deck[hitIndex+1].value)
-        console.log(total);
     }
 
     useEffect(()=> {
@@ -71,7 +72,7 @@ const Game = () => {
         } if (total > 21){
            setTimeout(busted,800)
         }
-    },[total])
+    },[cash,currentBet,total])
 
 
 
