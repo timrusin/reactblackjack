@@ -1,15 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'
 import './Title.css';
+import Deck from './data/Deck'
 
 function Title() {
   const [randomOpacity, setRandomOpacity] = useState()
-  const [values, setValues] = useState('')
-  const [color, setColor] = useState('')
-  const [suit, setSuit] = useState('')
-  const [valuesTwo, setValuesTwo] = useState('')
-  const [colorTwo, setColorTwo] = useState('')
-  const [suitTwo, setSuitTwo] = useState('')
 
   useEffect(()=>{
     setInterval(()=>{
@@ -18,23 +13,13 @@ function Title() {
   },[])
 
   useEffect(()=>{
-    const value = ['K','Q','A','J','10','9','8','7','6','5','4','3','2']
-    const suits = ['fa-heart', 'fa-diamond', 'fa-spade', 'fa-club']
-    const colors = ['red', 'black']
-    const randomValue = Math.floor(Math.random()*13)
-    const randomColor = Math.floor(Math.random()*2)
-    const randomSuit = Math.floor(Math.random()*4)
-    setValues(value[randomValue])
-    setColor(colors[randomColor])
-    setSuit(suits[randomSuit])
-    setValuesTwo(value[Math.floor(Math.random()*13)])
-    setColorTwo(colors[Math.floor(Math.random()*2)])
-    setSuitTwo(suits[Math.floor(Math.random()*4)])
-  },[])
+      Deck.sort((a,b) => 0.5 - Math.random());
+      }
+  ,[])
 
   return (
     <div className="App">
-      <h1 className='game-title' >BLACK JACK REACT</h1>
+      <h1 className='game-title'>BLACK JACK REACT</h1>
 
       <Link to='/game'><button className='play-button' style={{opacity: randomOpacity}}>PLAY</button></Link>
         
@@ -42,33 +27,33 @@ function Title() {
 
           <div className="cards inner-border card-one ">
             <div className="top-left">
-                <h1 style={{ color: color }} className="card-value">
-                  {values}
+                <h1 style={{ color: Deck[0].color }} className="card-value">
+                  {Deck[0].value}
                 </h1> 
-              <i style={{ color: color }} className={`fa-solid ${suit}`}></i>
+              <i style={{ color: Deck[0].color }} className={`fa-solid ${Deck[0].suit}`}></i>
             </div>
-            <i style={{ color: color }} className={`fa-solid ${suit} center-suit`}></i>
+            <i style={{ color: Deck[0].color }} className={`fa-solid ${Deck[0].suit} center-suit`}></i>
             <div className="bottom-right">
-                <h1 style={{ color: color }} className="card-value">
-                  {values}
+                <h1 style={{ color: Deck[0].color }} className="card-value">
+                  {Deck[0].value}
                 </h1>
-              <i style={{ color: color }} className={`fa-solid ${suit}`}></i>
+              <i style={{ color: Deck[0].color }} className={`fa-solid ${Deck[0].suit}`}></i>
              </div>
           </div>
 
           <div className="cards inner-border card-two">
             <div className="top-left">
-                <h1 style={{ color: colorTwo }} className="card-value">
-                  {valuesTwo}
+                <h1 style={{ color: Deck[1].color }} className="card-value">
+                  {Deck[1].value}
                 </h1> 
-              <i style={{ color: colorTwo }} className={`fa-solid ${suitTwo}`}></i>
+              <i style={{ color: Deck[1].color }} className={`fa-solid ${Deck[1].suit}`}></i>
             </div>
-            <i style={{ color: colorTwo }} className={`fa-solid ${suitTwo} center-suit`}></i>
+            <i style={{ color: Deck[1].color }} className={`fa-solid ${Deck[1].suit} center-suit`}></i>
             <div className="bottom-right">
-                <h1 style={{ color: colorTwo }} className="card-value">
-                  {valuesTwo}
+                <h1 style={{ color: Deck[1].color }} className="card-value">
+                  {Deck[1].value}
                 </h1>
-              <i style={{ color: colorTwo }} className={`fa-solid ${suitTwo}`}></i>
+              <i style={{ color: Deck[1].color }} className={`fa-solid ${Deck[1].suit}`}></i>
              </div>
           </div>
         </div>
