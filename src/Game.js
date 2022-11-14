@@ -9,6 +9,7 @@ const Game = () => {
     const [betPlaced, setBetPlaced] = useState(false)
     const [cardOne, setCardOne] = useState(false)
     const [cardTwo, setCardTwo] = useState(false)
+    const [hitIndex, setHitIndex] = useState(2)
     const [hitStand, setHitStand] = useState(false)
     const [total, setTotal] = useState(0)
 
@@ -37,6 +38,11 @@ const Game = () => {
             } else {
             setTotal(Deck[0].value + Deck[1].value)
         }
+    }
+    const Hit = () =>{
+        setHitIndex(hitIndex + 1)
+        setTotal(total + Deck[hitIndex].value)
+        console.log(hitIndex);
     }
 
   return (
@@ -77,7 +83,7 @@ const Game = () => {
 
         <div className={hitStand ? 'hit-stand fade' : 'hidden'}>
             <h2>{`Total: ${total}`}</h2>
-            <button> HIT </button>
+            <button onClick={Hit}> HIT </button>
             <button> STAND </button>
         </div>
     </div>
