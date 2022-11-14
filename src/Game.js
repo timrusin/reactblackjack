@@ -9,7 +9,7 @@ const Game = () => {
     const [betPlaced, setBetPlaced] = useState(false)
     const [cardOne, setCardOne] = useState(false)
     const [cardTwo, setCardTwo] = useState(false)
-    const [hitIndex, setHitIndex] = useState(2)
+    const [hitIndex, setHitIndex] = useState(1)
     const [hitStand, setHitStand] = useState(false)
     const [total, setTotal] = useState(0)
 
@@ -41,8 +41,7 @@ const Game = () => {
     }
     const Hit = () =>{
         setHitIndex(hitIndex + 1)
-        setTotal(total + Deck[hitIndex].value)
-        console.log(hitIndex);
+        setTotal(total + Deck[hitIndex+1].value)
     }
 
   return (
@@ -77,6 +76,36 @@ const Game = () => {
                  char = {Deck[1].char}
                  value = {Deck[1].char}
                  valueTwo = {Deck[1].valueTwo}
+                />
+            </div>
+
+            <div className={hitIndex >= 2 ? 'third-card' : 'card-hidding'}>
+                <Card 
+                 suit = {Deck[2].suit}
+                 color = {Deck[2].color}
+                 char = {Deck[2].char}
+                 value = {Deck[2].char}
+                 valueTwo = {Deck[2].valueTwo}
+                />
+            </div>
+
+            <div className={hitIndex >= 3 ? 'fourth-card' : 'card-hidding'}>
+                <Card 
+                 suit = {Deck[3].suit}
+                 color = {Deck[3].color}
+                 char = {Deck[3].char}
+                 value = {Deck[3].char}
+                 valueTwo = {Deck[3].valueTwo}
+                />
+            </div>
+
+            <div className={hitIndex >= 4 ? 'fifth-card' : 'card-hidding'}>
+                <Card 
+                 suit = {Deck[4].suit}
+                 color = {Deck[4].color}
+                 char = {Deck[4].char}
+                 value = {Deck[4].char}
+                 valueTwo = {Deck[4].valueTwo}
                 />
             </div>
         </div>

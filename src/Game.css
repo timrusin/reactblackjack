@@ -72,7 +72,23 @@
 .third-card {
     position: absolute;
     top: 400px;
-    left: 100px;
+    left: 110px;
+    transform: rotate(900deg);
+    transition: all ease-in 600ms;
+}
+
+.fourth-card {
+    position: absolute;
+    top: 400px;
+    left: 160px;
+    transform: rotate(900deg);
+    transition: all ease-in 600ms;
+}
+
+.fifth-card {
+    position: absolute;
+    top: 400px;
+    left: 200px;
     transform: rotate(900deg);
     transition: all ease-in 600ms;
 }
