@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './Game.css'
 import Card from './components/Card'
 import Deck from './data/Deck'
@@ -12,6 +12,8 @@ const Game = () => {
     const [hitIndex, setHitIndex] = useState(1)
     const [hitStand, setHitStand] = useState(false)
     const [total, setTotal] = useState(0)
+    const [blackJack, setBlackJack] = useState(false)
+    const [bust, setBust] = useState(false)
 
     const handleChange = (e) => {
         setCurrentBet(e.target.value)
@@ -24,25 +26,54 @@ const Game = () => {
     }
 
     const dealCards = () =>{
+        setCardOne(false)
+        setCardTwo(false)
+        setHitIndex(1)
+        setBlackJack(false)
+        setBust(false)
+        
         Deck.sort((a,b) => 0.5 - Math.random());
-        const CardTwo = ()=>{
+        const CardTwo = () => {
             setCardTwo(true)
             setTimeout(()=>{setHitStand(true)},400)
-          }
-            setCardOne(true)
-            setTimeout(CardTwo,400)
-            if (Deck[0].value + Deck[1].valueTwo <=21){
-                setTotal(Deck[0].value + Deck[1].valueTwo)
-            } else if (Deck[0].valueTwo + Deck[1].value <=21){
-                setTotal(Deck[0].valueTwo + Deck[1].value)
-            } else {
-            setTotal(Deck[0].value + Deck[1].value)
         }
+        setTimeout(()=>setCardOne(true))
+        setTimeout(CardTwo,400)
+
+        if (Deck[0].value + Deck[1].valueTwo <=21){
+            setTotal(Deck[0].value + Deck[1].valueTwo)
+        } else if (Deck[0].valueTwo + Deck[1].value <=21){
+            setTotal(Deck[0].valueTwo + Deck[1].value)
+        } else {
+        setTotal(Deck[0].value + Deck[1].value)
+    }
     }
     const Hit = () =>{
         setHitIndex(hitIndex + 1)
         setTotal(total + Deck[hitIndex+1].value)
+        console.log(total);
     }
+
+    useEffect(()=> {
+        const blackJackWin = () => {
+            setBlackJack(true)
+            setHitStand(false)
+            setBetPlaced(false)
+            setCash(cash + currentBet * 2)
+        }
+        const busted = () => {
+            setBust(true)
+            setHitStand(false)
+            setBetPlaced(false)
+        }
+        if (total === 21){
+           setTimeout(blackJackWin,800)
+        } if (total > 21){
+           setTimeout(busted,800)
+        }
+    },[total])
+
+
 
   return (
     <div className='game-page-container fade'>
@@ -58,6 +89,12 @@ const Game = () => {
             </form>
         {!betPlaced && <button className='bet-button' onClick={placeBet}>PLACE BET</button>}
         {!betPlaced && <h1 className='place-bet'>Place Your Bet</h1>}
+       
+        <div className='win-loose-message'>
+            {blackJack && <h1>BLACK JACK! You win!</h1>}
+            {bust && <h1>{`${total} Busted! Bummer`}</h1>}
+        </div>
+
         <div className='player-card-container'>
             <div className={cardOne ? 'first-card' : 'card-hidding'}>
                 <Card 
