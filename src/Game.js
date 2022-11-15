@@ -39,7 +39,7 @@ const Game = () => {
         }
         setTimeout(()=>setCardOne(true))
         setTimeout(CardTwo,400)
-        
+       
         if (Deck[0].value + Deck[1].valueTwo <=21){
             setTotal(Deck[0].value + Deck[1].valueTwo)
         } else if (Deck[0].valueTwo + Deck[1].value <=21){
@@ -61,7 +61,7 @@ const Game = () => {
             setTimeout(busted,400)
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[blackJack,hitStand,total])
+    },[hitStand])
     
     const busted = () => {
         setBust(true)
@@ -70,7 +70,8 @@ const Game = () => {
     }
     const blackJackWin = () => {
         setHitStand(false)
-        setCash(cash + currentBet * 2)
+        console.log(currentBet);
+        setCash(cash + currentBet)
         setBlackJack(true)
         setBetPlaced(false)
     }
