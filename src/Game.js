@@ -91,7 +91,7 @@ const Game = () => {
         {!betPlaced && <h1 className='place-bet'>Place Your Bet</h1>}
        
         <div className='win-loose-message'>
-            {blackJack && <h1>BLACK JACK! You win!</h1>}
+            {blackJack && <h1>BLACK JACK!</h1>}
             {bust && <h1>{`${total}, Busted! Bummer`}</h1>}
         </div>
 
