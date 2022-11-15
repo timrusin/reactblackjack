@@ -2,7 +2,7 @@
   @media screen and (max-width: 800px) { 
     .player-card-container{
       position: absolute;
-      margin-left: 20px;
+      margin-left: 5px;
     }
     .cards{
       margin: 50px 5px 0 5px;
@@ -54,6 +54,14 @@
       position: absolute;
       top: 280px;
       left: 195px;
+      transform: rotate(1800deg);
+      transition: all ease-in 600ms;
+    }
+
+    .sixth-card {
+      position: absolute;
+      top: 280px;
+      left: 245px;
       transform: rotate(1800deg);
       transition: all ease-in 600ms;
     }

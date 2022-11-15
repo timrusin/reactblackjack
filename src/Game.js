@@ -147,6 +147,16 @@ const Game = () => {
                  valueTwo = {Deck[4].valueTwo}
                 />
             </div>
+
+            <div className={hitIndex >= 5 ? 'sixth-card' : 'card-hidding'}>
+                <Card 
+                 suit = {Deck[5].suit}
+                 color = {Deck[5].color}
+                 char = {Deck[5].char}
+                 value = {Deck[5].char}
+                 valueTwo = {Deck[5].valueTwo}
+                />
+            </div>
         </div>
 
         <div className={hitStand ? 'hit-stand fade' : 'hidden'}>
