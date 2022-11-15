@@ -72,10 +72,10 @@
     }
   
     .top-left{
-      position: absolute;
+      position: relative;
       text-align: center;
       font-family: serif;
-      left: 5px;
+      left: -62px;
       top: -20px;
       font-size: 15px;
     }
@@ -93,10 +93,10 @@
     }
   
     .bottom-right{
-      position: absolute;
+      position: relative;
       text-align: center;
-      right: 5px;
-      top: 172px;
+      right: -62px;
+      top: 80px;
       font-family: serif;
       font-size: 15px;
       transform: rotate(180deg);
