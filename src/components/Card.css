@@ -21,48 +21,48 @@
   
     .first-card {
       position: absolute;
-      transform: rotate(1800deg);
-      top: 280px;
+      transform: rotate(720deg);
+      top: 330px;
       transition: all ease-in 600ms;
     }
   
     .second-card {
       position: absolute;
-      top: 280px;
+      top: 330px;
       left: 45px;
-      transform: rotate(1800deg);
+      transform: rotate(720deg);
       transition: all ease-in 600ms;
     }
   
     .third-card {
       position: absolute;
-      top: 280px;
+      top: 330px;
       left: 95px;
-      transform: rotate(1800deg);
+      transform: rotate(720deg);
       transition: all ease-in 600ms;
     }
   
     .fourth-card {
       position: absolute;
-      top: 280px;
+      top: 330px;
       left: 145px;
-      transform: rotate(1800deg);
+      transform: rotate(720deg);
       transition: all ease-in 600ms;
     }
   
     .fifth-card {
       position: absolute;
-      top: 280px;
+      top: 330px;
       left: 195px;
-      transform: rotate(1800deg);
+      transform: rotate(720deg);
       transition: all ease-in 600ms;
     }
 
     .sixth-card {
       position: absolute;
-      top: 280px;
+      top: 330px;
       left: 245px;
-      transform: rotate(1800deg);
+      transform: rotate(720deg);
       transition: all ease-in 600ms;
     }
   
