@@ -159,7 +159,7 @@ const Game = () => {
             </div>
         </div>
 
-        <div className={hitStand ? 'hit-stand fade' : 'hidden'}>
+        <div className={hitStand ? 'hit-stand' : 'hidden'}>
             <h2>{`Total: ${total}`}</h2>
             <button onClick={Hit}> HIT </button>
             <button> STAND </button>
