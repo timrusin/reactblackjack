@@ -15,8 +15,6 @@ const Game = () => {
     const [blackJack, setBlackJack] = useState(false)
     const [bust, setBust] = useState(false)
 
-    
-
     const handleChange = (e) => {
         setCurrentBet(e.target.value)
     }
@@ -76,8 +74,7 @@ const Game = () => {
         setBetPlaced(false)
         setCash(cash + currentBet * 2)
     }
-
-
+    
   return (
     <div className='game-page-container fade'>
         <div className='cash'>{ `$ ${cash}` }</div>
