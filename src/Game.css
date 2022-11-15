@@ -48,7 +48,7 @@
 .win-loose-message {
     position: absolute;
     z-index: 10;
-    top: 260px;
+    top: 310px;
     left: 10px;
     font-size: 17px;
 }
