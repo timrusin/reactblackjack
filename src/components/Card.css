@@ -17,8 +17,7 @@
       position: absolute;
       top: -400px;
     }
-  
-  
+
     .first-card {
       position: absolute;
       transform: rotate(720deg);
@@ -96,7 +95,7 @@
       position: relative;
       text-align: center;
       right: -62px;
-      top: 30px;
+      top: 28px;
       font-family: serif;
       font-size: 15px;
       transform: rotate(180deg);
