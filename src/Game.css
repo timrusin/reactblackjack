@@ -1,7 +1,7 @@
 .game-page-container {
     width: 100vw;
     height: 100vh;
-    background-image: url('/Users/timrusin/Documents/coding/reactblackjack/public/images/tabletest.jpeg');
+    background-image: url('/public/images/tabletest.jpeg');
     background-size: cover;
 }
 
