@@ -61,7 +61,7 @@ const Game = () => {
             setTimeout(busted,400)
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[hitStand])
+    },[hitStand, total])
     
     const busted = () => {
         setBust(true)
