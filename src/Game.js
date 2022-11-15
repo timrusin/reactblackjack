@@ -56,24 +56,25 @@ const Game = () => {
     }
 
     useEffect(()=> {
-        const blackJackWin = () => {
-            setBlackJack(true)
-            setHitStand(false)
-            setBetPlaced(false)
-            setCash(cash + currentBet * 2)
-        }
-        const busted = () => {
-            setBust(true)
-            setHitStand(false)
-            setBetPlaced(false)
-        }
         if (total === 21){
-           setTimeout(blackJackWin,800)
+            setTimeout(blackJackWin,800)
         } if (total > 21){
-           setTimeout(busted,800)
+            setTimeout(busted,800)
         }
-    },[cash,currentBet,total])
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[total])
+    
+    const busted = () => {
+        setBust(true)
+        setHitStand(false)
+        setBetPlaced(false)
+    }
+    const blackJackWin = () => {
+        setBlackJack(true)
+        setHitStand(false)
+        setBetPlaced(false)
+        setCash(cash + currentBet * 2)
+    }
 
 
   return (
