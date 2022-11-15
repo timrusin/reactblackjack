@@ -52,14 +52,15 @@ const Game = () => {
     }
     const Hit = () =>{
         setHitIndex(hitIndex + 1)
-        setTotal(total + Deck[hitIndex+1].value)
+        setTimeout(()=>setTotal(total + Deck[hitIndex+1].value),800)
+        // setTotal(total + Deck[hitIndex+1].value)
     }
 
     useEffect(()=> {
         if (total === 21){
-            setTimeout(blackJackWin,800)
+            setTimeout(blackJackWin,200)
         } if (total > 21){
-            setTimeout(busted,800)
+            setTimeout(busted,200)
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[total])
