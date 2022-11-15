@@ -94,7 +94,7 @@ const Game = () => {
        
         <div className='win-loose-message'>
             {blackJack && <h1>BLACK JACK! You win!</h1>}
-            {bust && <h1>{`${total} Busted! Bummer`}</h1>}
+            {bust && <h1>{`${total}, Busted! Bummer`}</h1>}
         </div>
 
         <div className='player-card-container'>

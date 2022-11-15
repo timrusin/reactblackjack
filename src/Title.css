@@ -19,60 +19,16 @@
       flex-direction: row;
       margin-top: 50px;
     }
-  
-    .cards{
-      margin: 50px 5px 0 5px;
-      background: rgb(243, 234, 218);
-      width: 150px;
-      height: 225px;
-      border-radius: 5px;
-      filter: drop-shadow(0px 0px 10px rgb(0, 0, 0));
-    }
-  
-    .card-one {
-      transform: rotate(-30deg);
-      position: fixed;
-      right: 150px;
-    }
-  
-    .card-two {
-      transform: rotate(30deg);
-      position: fixed;
-      left: 150px;
-    }
-  
-    .inner-border {
-      box-shadow: inset 0px 0px 0px 1px black;
-      border: 5px solid rgb(240, 240, 240);
-    }
-  
-    .top-left{
-      position: relative;
-      font-family: serif;
-      left: 5px;
-      top: -20px;
-      font-size: 15px;
-    }
-  
-    .card-value{
-      margin-bottom: 0px;
-      font-size: 30px;
-  }
-  
-    .center-suit {
-      position: relative;
-      font-size: 50px;
-      top: 15px;
-      left: 48px;
-    }
-  
-    .bottom-right{
+
+    .title-one {
       position: absolute;
-      text-align: center;
-      left: 121px;
-      top: 170px;
-      font-family: serif;
-      font-size: 15px;
-      transform: rotate(180deg);
+      transform: rotate(-30deg);
+      left: 60px;
+    }
+
+    .title-two {
+      position: absolute;
+      transform: rotate(30deg);
+      right: 60px;
     }
   }

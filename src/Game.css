@@ -45,70 +45,18 @@
     color: #000;
 }
 
-.card-hidding {
+.win-loose-message {
     position: absolute;
-    top: -400px;
-}
-
-.player-card-container{
-    position: absolute;
-    margin-left: 20px;
-}
-
-.first-card {
-    position: absolute;
-    top: 450px;
-    transform: rotate(900deg);
-    transition: all ease-in 600ms;
-}
-
-.second-card {
-    position: absolute;
-    top: 450px;
-    left: 45px;
-    transform: rotate(900deg);
-    transition: all ease-in 600ms;
-}
-
-.third-card {
-    position: absolute;
-    top: 450px;
-    left: 95px;
-    transform: rotate(900deg);
-    transition: all ease-in 600ms;
-}
-
-.fourth-card {
-    position: absolute;
-    top: 450px;
-    left: 145px;
-    transform: rotate(900deg);
-    transition: all ease-in 600ms;
-}
-
-.fifth-card {
-    position: absolute;
-    top: 450px;
-    left: 195px;
-    transform: rotate(900deg);
-    transition: all ease-in 600ms;
+    z-index: 10;
+    top: 260px;
+    left: 10px;
+    font-size: 17px;
 }
 
 .hit-stand {
     display: flex;
-    color: #000;
-    flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
     position: relative;
-    top: 680px;
-}
-
-.win-loose-message {
-    display: flex;
-    position: fixed;
-    top: 357px;
-    left: 10px;
-    font-size: 17px;
-    text-align: center;
+    top: 550px;
 }
