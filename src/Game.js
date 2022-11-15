@@ -58,9 +58,9 @@ const Game = () => {
 
     useEffect(()=> {
         if (total === 21){
-            setTimeout(blackJackWin,200)
+            setTimeout(blackJackWin,400)
         } if (total > 21){
-            setTimeout(busted,200)
+            setTimeout(busted,400)
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[total])
