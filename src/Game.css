@@ -19,7 +19,7 @@
     flex-direction: column;
     align-items: flex-end;
     position: absolute;
-    top: 55px;
+    top: 50px;
     right: 20px;
     width: 100px;
     font-size: 50px;
@@ -34,13 +34,13 @@
 .bet-button {
     position: absolute; 
     right: 20px;
-    top: 85px;
+    top: 75px;
 }
 
 .place-bet {
     position: absolute;
-    top: 10px;
-    left: 20px;
+    top: 2px;
+    left: 10px;
     font-size: 40px;
     color: #000;
 }
