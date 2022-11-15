@@ -39,7 +39,7 @@ const Game = () => {
         }
         setTimeout(()=>setCardOne(true))
         setTimeout(CardTwo,400)
-
+        
         if (Deck[0].value + Deck[1].valueTwo <=21){
             setTotal(Deck[0].value + Deck[1].valueTwo)
         } else if (Deck[0].valueTwo + Deck[1].value <=21){
@@ -51,17 +51,17 @@ const Game = () => {
     const Hit = () =>{
         setHitIndex(hitIndex + 1)
         setTimeout(()=>setTotal(total + Deck[hitIndex+1].value),800)
-        // setTotal(total + Deck[hitIndex+1].value)
     }
 
     useEffect(()=> {
-        if (total === 21){
-            setTimeout(blackJackWin,400)
-        } if (total > 21){
+        if (total === 21 && hitIndex === 1){
+        blackJackWin()
+        }
+         if (total > 21){
             setTimeout(busted,400)
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[total])
+    },[blackJack,hitStand,total])
     
     const busted = () => {
         setBust(true)
@@ -69,14 +69,14 @@ const Game = () => {
         setBetPlaced(false)
     }
     const blackJackWin = () => {
-        setBlackJack(true)
         setHitStand(false)
-        setBetPlaced(false)
         setCash(cash + currentBet * 2)
+        setBlackJack(true)
+        setBetPlaced(false)
     }
     
   return (
-    <div className='game-page-container fade'>
+    <div className='game-page-container'>
         <div className='cash'>{ `$ ${cash}` }</div>
             <form className='bet'>
                 <select onChange={handleChange} className='bet-form'>
