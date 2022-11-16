@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import './Game.css'
 import Card from './components/Card'
 import Deck from './data/Deck'
+import Dealer from './components/Dealer'
 
 const Game = () => {
     const [cash, setCash] = useState(1000)
@@ -91,6 +92,12 @@ const Game = () => {
         {!betPlaced && <button className='bet-button' onClick={placeBet}>PLACE BET</button>}
         {!betPlaced && <h1 className='place-bet'>Place Your Bet</h1>}
        
+       <Dealer
+       Deck = {Deck}
+       total = {total}
+       lastPlayerIndex = {hitIndex}
+       />
+
         <div className='win-loose-message'>
             {blackJack && <h1>BLACK JACK!</h1>}
             {bust && <h1>{`${total}, Busted! Bummer`}</h1>}
