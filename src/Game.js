@@ -8,6 +8,7 @@ const Game = () => {
     const [cash, setCash] = useState(1000)
     const [currentBet, setCurrentBet] = useState(10)
     const [betPlaced, setBetPlaced] = useState(false)
+    const [stand, setStand] = useState (false)
     const [cardOne, setCardOne] = useState(false)
     const [cardTwo, setCardTwo] = useState(false)
     const [hitIndex, setHitIndex] = useState(1)
@@ -92,11 +93,11 @@ const Game = () => {
         {!betPlaced && <button className='bet-button' onClick={placeBet}>PLACE BET</button>}
         {!betPlaced && <h1 className='place-bet'>Place Your Bet</h1>}
        
-       <Dealer
+       {stand && <Dealer
        Deck = {Deck}
        total = {total}
        lastPlayerIndex = {hitIndex}
-       />
+       />}
 
         <div className='win-loose-message'>
             {blackJack && <h1>BLACK JACK!</h1>}
@@ -168,7 +169,7 @@ const Game = () => {
         <div className={hitStand ? 'hit-stand' : 'hidden'}>
             <h2>{`Total: ${total}`}</h2>
             <button onClick={Hit}> HIT </button>
-            <button> STAND </button>
+            <button onClick={()=>setStand(true)}> STAND </button>
         </div>
     </div>
   )
