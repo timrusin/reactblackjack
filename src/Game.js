@@ -63,7 +63,7 @@ const Game = () => {
 
     useEffect(()=> {
         if (total === 21 && hitIndex === 1){
-        blackJackWin()
+        setTimeout(blackJackWin,400)
         }
          if (total > 21){
             setTimeout(busted,400)
