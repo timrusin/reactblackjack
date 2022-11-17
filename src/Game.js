@@ -75,10 +75,10 @@ const Game = () => {
         setBust(true)
         setHitStand(false)
         setBetPlaced(false)
+        console.log(hitIndex);
     }
     const blackJackWin = () => {
         setHitStand(false)
-        console.log(currentBet);
         setCash(cash + currentBet)
         setBlackJack(true)
         setBetPlaced(false)
@@ -102,7 +102,8 @@ const Game = () => {
        {stand && <Dealer
        Deck = {Deck}
        total = {total}
-       lastPlayerIndex = {hitIndex}
+       hitIndex = {hitIndex}
+       setBetPlaced = {setBetPlaced}
        />}
 
         <div className='win-loose-message'>
