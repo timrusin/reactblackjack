@@ -23,7 +23,7 @@ const Game = () => {
 
     const placeBet = () => {
         setCash(cash - currentBet)
-        setBetPlaced(true)
+        
         dealCards()
     }
 
@@ -37,7 +37,8 @@ const Game = () => {
 
         const CardTwo = () => {
             setCardTwo(true)
-            setTimeout(()=>{setHitStand(true)},400)
+            setTimeout(()=>{setHitStand(true)},800)
+            setTimeout(()=>{setBetPlaced(true)},800)
         }
         setTimeout(()=>setCardOne(true))
         setTimeout(CardTwo,400)
@@ -53,6 +54,11 @@ const Game = () => {
     const Hit = () =>{
         setHitIndex(hitIndex + 1)
         setTimeout(()=>setTotal(total + Deck[hitIndex+1].value),800)
+    }
+
+    const Stand = () =>{
+        setHitStand(false)
+        setStand(true)
     }
 
     useEffect(()=> {
@@ -165,12 +171,11 @@ const Game = () => {
                 />
             </div>
         </div>
-
-        <div className={hitStand ? 'hit-stand' : 'hidden'}>
-            <h2>{`Total: ${total}`}</h2>
-            <button onClick={Hit}> HIT </button>
-            <button onClick={()=>setStand(true)}> STAND </button>
-        </div>
+            {betPlaced && <h2 className='player-total'>{`Your Total: ${total}`}</h2>}
+            <div className='player-buttons'>
+                {hitStand && <button className='hit-stand' onClick={Hit}> HIT </button>}
+                {hitStand && <button className='hit-stand' onClick={Stand}> STAND </button>}
+             </div>
     </div>
   )
 }

@@ -1,5 +1,14 @@
 .dealer-container{
-    color: black;
+    color: rgb(255, 255, 255);
     position: absolute;
     top: -290px;
+}
+
+.dealer-total{
+    position: absolute;
+    z-index: 9999;
+    top: 600px;
+    left: 5px;
+    width: 180px;
+
 }
