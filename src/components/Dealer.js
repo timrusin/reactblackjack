@@ -9,8 +9,8 @@ const Dealer = (props) => {
     const [dealerDrawIndex, setDealerDrawIndex] = useState({})
     const [totalDisplay, setTotalDisplay] = useState(false)
     const [dealerTotal, setDealerTotal] = useState(null)
-    const [dealerBlackJack, setDealerBlackJack] = useState(false)
-    const [dealerBust, setDealerBust] = useState (false)
+    // const [dealerBlackJack, setDealerBlackJack] = useState(false)
+    // const [dealerBust, setDealerBust] = useState (false)
 
     useEffect(()=>{
         setDealerDrawIndex(1)
@@ -29,7 +29,14 @@ const Dealer = (props) => {
         } else {
         setDealerTotal(props.Deck[props.lastPlayerIndex+1].value + props.Deck[props.lastPlayerIndex+2].value)
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
+
+    // useEffect(()=>{
+    //     while(dealerTotal<21){
+            
+    //     }
+    // })
 
   return (
     <div className="dealer-container">
