@@ -53,10 +53,18 @@
     font-size: 17px;
 }
 
-.hit-stand {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    position: relative;
+.player-total {
+    position: absolute;
     top: 600px;
+    left: 5px;
+}
+
+.player-buttons {
+    position: absolute;
+    top: 622px;
+    left: 180px;
+}
+
+.hit-stand {
+    margin: 0 20px;
 }

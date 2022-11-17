@@ -2,11 +2,13 @@ import { useState, useEffect } from 'react'
 import './Game.css'
 import Card from './components/Card'
 import Deck from './data/Deck'
+import Dealer from './components/Dealer'
 
 const Game = () => {
     const [cash, setCash] = useState(1000)
     const [currentBet, setCurrentBet] = useState(10)
     const [betPlaced, setBetPlaced] = useState(false)
+    const [stand, setStand] = useState (false)
     const [cardOne, setCardOne] = useState(false)
     const [cardTwo, setCardTwo] = useState(false)
     const [hitIndex, setHitIndex] = useState(1)
@@ -21,7 +23,7 @@ const Game = () => {
 
     const placeBet = () => {
         setCash(cash - currentBet)
-        setBetPlaced(true)
+        
         dealCards()
     }
 
@@ -35,7 +37,8 @@ const Game = () => {
 
         const CardTwo = () => {
             setCardTwo(true)
-            setTimeout(()=>{setHitStand(true)},400)
+            setTimeout(()=>{setHitStand(true)},800)
+            setTimeout(()=>{setBetPlaced(true)},800)
         }
         setTimeout(()=>setCardOne(true))
         setTimeout(CardTwo,400)
@@ -51,6 +54,11 @@ const Game = () => {
     const Hit = () =>{
         setHitIndex(hitIndex + 1)
         setTimeout(()=>setTotal(total + Deck[hitIndex+1].value),800)
+    }
+
+    const Stand = () =>{
+        setHitStand(false)
+        setStand(true)
     }
 
     useEffect(()=> {
@@ -91,6 +99,12 @@ const Game = () => {
         {!betPlaced && <button className='bet-button' onClick={placeBet}>PLACE BET</button>}
         {!betPlaced && <h1 className='place-bet'>Place Your Bet</h1>}
        
+       {stand && <Dealer
+       Deck = {Deck}
+       total = {total}
+       lastPlayerIndex = {hitIndex}
+       />}
+
         <div className='win-loose-message'>
             {blackJack && <h1>BLACK JACK!</h1>}
             {bust && <h1>{`${total}, Busted! Bummer`}</h1>}
@@ -157,12 +171,11 @@ const Game = () => {
                 />
             </div>
         </div>
-
-        <div className={hitStand ? 'hit-stand' : 'hidden'}>
-            <h2>{`Total: ${total}`}</h2>
-            <button onClick={Hit}> HIT </button>
-            <button> STAND </button>
-        </div>
+            {betPlaced && <h2 className='player-total'>{`Your Total: ${total}`}</h2>}
+            <div className='player-buttons'>
+                {hitStand && <button className='hit-stand' onClick={Hit}> HIT </button>}
+                {hitStand && <button className='hit-stand' onClick={Stand}> STAND </button>}
+             </div>
     </div>
   )
 }
