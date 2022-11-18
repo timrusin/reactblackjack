@@ -3,13 +3,14 @@ import './Dealer.css'
 import Card from './Card'
 
 
-const Dealer = ({ setCardOne, setCardTwo, setBetPlaced, Deck, setTotal, total, hitIndex}) => {
+const Dealer = ({ setCardOne, setCardTwo, setBetPlaced, Deck, setTotal, total, setHitIndex, hitIndex}) => {
     const [dealerCardOne, setDealerCardOne] = useState('')
     const [dealerCardTwo, setDealerCardTwo] = useState('')
     const [drawCard, setDrawCard] = useState (2)
     const [totalDisplay, setTotalDisplay] = useState(false)
     const [dealerTotal, setDealerTotal] = useState(0)
     const [dealerWins, setDealerWins] = useState(false)
+    const [youWin, setYouWin] = useState(false)
     // const [dealerBlackJack, setDealerBlackJack] = useState(false)
 
     useEffect(()=>{
@@ -28,20 +29,26 @@ const Dealer = ({ setCardOne, setCardTwo, setBetPlaced, Deck, setTotal, total, h
         } else {
           setDealerTotal(Deck[hitIndex+1].value + Deck[hitIndex+2].value)
         }
-    },[Deck,hitIndex])
-
-      useEffect(()=>{
-        if (dealerTotal<total){
+        
+      },[Deck,hitIndex])
+      
+      
+      const dealerDraw = ()=>{
+        if (dealerTotal < total){
           const drawInterval = setInterval(()=>{
             setDrawCard(drawCard + 1)
-            setDealerTotal(dealerTotal + Deck[hitIndex + drawCard + 1].value)
+            setDealerTotal(dealerTotal + Deck[hitIndex + 3].value)
             if (dealerTotal > total && dealerTotal < 21){
               setDealerWins(true)
+              clearInterval(drawInterval)
+            } else if (dealerTotal > 21){
+              setYouWin(true)
               clearInterval(drawInterval)
             }
           },2000)
         }
-      },[Deck,dealerTotal,drawCard,total,hitIndex])
+      }
+      setTimeout(dealerDraw,800)
         
       useEffect(()=>{
         if (dealerTotal > total && dealerTotal < 21){
@@ -55,10 +62,23 @@ const Dealer = ({ setCardOne, setCardTwo, setBetPlaced, Deck, setTotal, total, h
             setCardTwo(false)
             setDealerTotal(0)
             setTotalDisplay(false)
+            setDealerWins(true)
+            setHitIndex(1)
           },2000)
-
-          
-         
+        } else if (dealerTotal > 21){
+          setTimeout(()=>{
+            setDrawCard(0)
+            setTotal(0)
+            setBetPlaced(false)
+            setDealerCardOne(false)
+            setDealerCardTwo(false)
+            setCardOne(false)
+            setCardTwo(false)
+            setDealerTotal(0)
+            setTotalDisplay(false)
+            setYouWin(true)
+            setHitIndex(1)
+          },2000)
         }
       },[dealerTotal, setTotal, total, setBetPlaced, setCardOne, setCardTwo])
 
@@ -126,6 +146,9 @@ const Dealer = ({ setCardOne, setCardTwo, setBetPlaced, Deck, setTotal, total, h
         </div>
         {dealerWins && <div className="dealer-total">
           <h2>Dealer Wins</h2>
+        </div>}
+        {youWin && <div className="dealer-total">
+          <h2>You Win!</h2>
         </div>}
         {totalDisplay && <div className="dealer-total">
           <h2>{`Dealer Total: ${dealerTotal}`}</h2>

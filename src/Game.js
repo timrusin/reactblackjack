@@ -101,6 +101,7 @@ const Game = () => {
        Deck = {Deck}
        total = {total}
        setTotal = {setTotal}
+       setHitIndex = {setHitIndex}
        hitIndex = {hitIndex}
        setBetPlaced = {setBetPlaced}
        setCardOne = {setCardOne}
