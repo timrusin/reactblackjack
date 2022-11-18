@@ -8,8 +8,6 @@ const Dealer = ({ setBetPlaced, Deck, total, hitIndex}) => {
     const [dealerCardTwo, setDealerCardTwo] = useState('')
     const [totalDisplay, setTotalDisplay] = useState(false)
     const [dealerTotal, setDealerTotal] = useState(0)
-    // const [dealerBlackJack, setDealerBlackJack] = useState(false)
-    // const [dealerBust, setDealerBust] = useState (false)
 
     useEffect(()=>{
         setTimeout(()=>setTotalDisplay(true),1200)
@@ -27,11 +25,9 @@ const Dealer = ({ setBetPlaced, Deck, total, hitIndex}) => {
         } else {
           setDealerTotal(Deck[hitIndex+1].value + Deck[hitIndex+2].value)
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[])
 
-    },[Deck, hitIndex])
-
-
-  
   return (
     <div className="dealer-container">
       <div className="dealer-card-container">

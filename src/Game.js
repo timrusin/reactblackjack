@@ -63,7 +63,8 @@ const Game = () => {
 
     useEffect(()=> {
         if (total === 21 && hitIndex === 1){
-        setTimeout(blackJackWin,400)
+        setHitStand(false)
+        setTimeout(blackJackWin, 1000)
         }
          if (total > 21){
             setTimeout(busted,400)
@@ -75,10 +76,8 @@ const Game = () => {
         setBust(true)
         setHitStand(false)
         setBetPlaced(false)
-        console.log(hitIndex);
     }
     const blackJackWin = () => {
-        setHitStand(false)
         setCash(cash + currentBet)
         setBlackJack(true)
         setBetPlaced(false)
