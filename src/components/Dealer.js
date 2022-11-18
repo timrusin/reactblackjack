@@ -6,12 +6,23 @@ import Card from './Card'
 const Dealer = ({ setBetPlaced, Deck, total, hitIndex}) => {
     const [dealerCardOne, setDealerCardOne] = useState('')
     const [dealerCardTwo, setDealerCardTwo] = useState('')
+    const [drawCard, setDrawCard] = useState (2)
     const [totalDisplay, setTotalDisplay] = useState(false)
     const [dealerTotal, setDealerTotal] = useState(0)
 
     useEffect(()=>{
         setTimeout(()=>setTotalDisplay(true),1200)
-        
+
+        // const drawInterval = setInterval(()=>{
+        //   setDrawCard(drawCard + 1)
+        //   setDealerTotal(dealerTotal + Deck[hitIndex+drawCard].value)
+        //   if(dealerTotal >= 21){
+        //     clearInterval(drawInterval)
+        //   }
+
+        // },2000)
+
+
         const DealerCardTwo = () => {
           setDealerCardTwo(true)
         }
@@ -49,7 +60,7 @@ const Dealer = ({ setBetPlaced, Deck, total, hitIndex}) => {
             valueTwo={Deck[hitIndex + 2].valueTwo}
           />
         </div>
-        <div className={null ? "third-card" : "card-hidding"}>
+        <div className={drawCard >= 3 ? "third-card" : "card-hidding"}>
           <Card
             suit={Deck[hitIndex + 3].suit}
             color={Deck[hitIndex + 3].color}
@@ -58,7 +69,7 @@ const Dealer = ({ setBetPlaced, Deck, total, hitIndex}) => {
             valueTwo={Deck[hitIndex + 3].valueTwo}
           />
         </div>
-        <div className={null ? "fourth-card" : "card-hidding"}>
+        <div className={drawCard >=4 ? "fourth-card" : "card-hidding"}>
           <Card
             suit={Deck[hitIndex + 4].suit}
             color={Deck[hitIndex + 4].color}
