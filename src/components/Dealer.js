@@ -3,98 +3,153 @@ import './Dealer.css'
 import Card from './Card'
 
 
-const Dealer = (props) => {
+const Dealer = ({ setCardOne, setCardTwo, setBetPlaced, Deck, setTotal, total, setHitIndex, hitIndex}) => {
     const [dealerCardOne, setDealerCardOne] = useState('')
     const [dealerCardTwo, setDealerCardTwo] = useState('')
-    const [dealerDrawIndex, setDealerDrawIndex] = useState({})
+    const [drawCard, setDrawCard] = useState (2)
     const [totalDisplay, setTotalDisplay] = useState(false)
-    const [dealerTotal, setDealerTotal] = useState(null)
+    const [dealerTotal, setDealerTotal] = useState(0)
+    const [dealerWins, setDealerWins] = useState(false)
+    const [youWin, setYouWin] = useState(false)
     // const [dealerBlackJack, setDealerBlackJack] = useState(false)
-    // const [dealerBust, setDealerBust] = useState (false)
 
     useEffect(()=>{
-        setDealerDrawIndex(1)
         setTimeout(()=>setTotalDisplay(true),1200)
 
         const DealerCardTwo = () => {
-            setDealerCardTwo(true)
+          setDealerCardTwo(true)
         }
-        setTimeout(()=>setDealerCardOne(true))
+        setDealerCardOne(true)
         setTimeout(DealerCardTwo,400)
-
-        if (props.Deck[props.lastPlayerIndex+1].value + props.Deck[props.lastPlayerIndex+2].valueTwo <=21){
-            setDealerTotal(props.Deck[props.lastPlayerIndex+1].value + props.Deck[props.lastPlayerIndex+2].valueTwo)
-        } else if (props.Deck[props.lastPlayerIndex+1].valueTwo + props.Deck[props.lastPlayerIndex+2].value <=21){
-            setDealerTotal(props.Deck[props.lastPlayerIndex+1].valueTwo + props.Deck[props.lastPlayerIndex+2].value)
+        
+        if (Deck[hitIndex+1].value + Deck[hitIndex+2].valueTwo <=21){
+          setDealerTotal(Deck[hitIndex+1].value + Deck[hitIndex+2].valueTwo)
+        } else if (Deck[hitIndex+1].valueTwo + Deck[hitIndex+2].value <=21){
+          setDealerTotal(Deck[hitIndex+1].valueTwo + Deck[hitIndex+2].value)
         } else {
-        setDealerTotal(props.Deck[props.lastPlayerIndex+1].value + props.Deck[props.lastPlayerIndex+2].value)
+          setDealerTotal(Deck[hitIndex+1].value + Deck[hitIndex+2].value)
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[])
+        
+      },[Deck,hitIndex])
+      
+      
+      const dealerDraw = ()=>{
+        if (dealerTotal < total){
+          const drawInterval = setInterval(()=>{
+            setDrawCard(drawCard + 1)
+            setDealerTotal(dealerTotal + Deck[hitIndex + 3].value)
+            if (dealerTotal === total){
+              clearInterval(drawInterval)
+            } if (dealerTotal > 21){
+              clearInterval(drawInterval)
+            } if (dealerTotal > total && dealerTotal < 21){
+              clearInterval(drawInterval)
+            } 
+          },2000)
+        }
+      }
+      setTimeout(dealerDraw,800)
+        
+      useEffect(()=>{
+        if (dealerTotal > total && dealerTotal < 21){
+          setTimeout(()=>{
+            setDrawCard(0)
+            setTotal(0)
+            setBetPlaced(false)
+            setDealerCardOne(false)
+            setDealerCardTwo(false)
+            setCardOne(false)
+            setCardTwo(false)
+            setDealerTotal(0)
+            setTotalDisplay(false)
+            setDealerWins(true)
+            setHitIndex(1)
+          },2000)
+        } else if (dealerTotal > 21){
+          setTimeout(()=>{
+            setDrawCard(0)
+            setTotal(0)
+            setBetPlaced(false)
+            setDealerCardOne(false)
+            setDealerCardTwo(false)
+            setCardOne(false)
+            setCardTwo(false)
+            setDealerTotal(0)
+            setTotalDisplay(false)
+            setYouWin(true)
+            setHitIndex(1)
+          },2000)
+        }
+      },[dealerTotal, setTotal, total, setHitIndex, setBetPlaced, setCardOne, setCardTwo])
 
-    // useEffect(()=>{
-    //     while(dealerTotal<21){
-            
-    //     }
-    // })
+      
+    
+    
+
 
   return (
     <div className="dealer-container">
       <div className="dealer-card-container">
         <div className={dealerCardOne ? "first-card" : "card-hidding"}>
           <Card
-            suit={props.Deck[props.lastPlayerIndex + 1].suit}
-            color={props.Deck[props.lastPlayerIndex + 1].color}
-            char={props.Deck[props.lastPlayerIndex + 1].char}
-            value={props.Deck[props.lastPlayerIndex + 1].char}
-            valueTwo={props.Deck[props.lastPlayerIndex + 1].valueTwo}
+            suit={Deck[hitIndex + 1].suit}
+            color={Deck[hitIndex + 1].color}
+            char={Deck[hitIndex + 1].char}
+            value={Deck[hitIndex + 1].char}
+            valueTwo={Deck[hitIndex + 1].valueTwo}
           />
         </div>
         <div className={dealerCardTwo ? "second-card" : "card-hidding"}>
           <Card
-            suit={props.Deck[props.lastPlayerIndex + 2].suit}
-            color={props.Deck[props.lastPlayerIndex + 2].color}
-            char={props.Deck[props.lastPlayerIndex + 2].char}
-            value={props.Deck[props.lastPlayerIndex + 2].char}
-            valueTwo={props.Deck[props.lastPlayerIndex + 2].valueTwo}
+            suit={Deck[hitIndex + 2].suit}
+            color={Deck[hitIndex + 2].color}
+            char={Deck[hitIndex + 2].char}
+            value={Deck[hitIndex + 2].char}
+            valueTwo={Deck[hitIndex + 2].valueTwo}
           />
         </div>
-        <div className={dealerDrawIndex >= 2 ? "third-card" : "card-hidding"}>
+        <div className={drawCard >= 3 ? "third-card" : "card-hidding"}>
           <Card
-            suit={props.Deck[props.lastPlayerIndex + 3].suit}
-            color={props.Deck[props.lastPlayerIndex + 3].color}
-            char={props.Deck[props.lastPlayerIndex + 3].char}
-            value={props.Deck[props.lastPlayerIndex + 3].char}
-            valueTwo={props.Deck[props.lastPlayerIndex + 3].valueTwo}
+            suit={Deck[hitIndex + 3].suit}
+            color={Deck[hitIndex + 3].color}
+            char={Deck[hitIndex + 3].char}
+            value={Deck[hitIndex + 3].char}
+            valueTwo={Deck[hitIndex + 3].valueTwo}
           />
         </div>
-        <div className={dealerDrawIndex >= 3 ? "fourth-card" : "card-hidding"}>
+        <div className={drawCard >=4 ? "fourth-card" : "card-hidding"}>
           <Card
-            suit={props.Deck[props.lastPlayerIndex + 4].suit}
-            color={props.Deck[props.lastPlayerIndex + 4].color}
-            char={props.Deck[props.lastPlayerIndex + 4].char}
-            value={props.Deck[props.lastPlayerIndex + 4].char}
-            valueTwo={props.Deck[props.lastPlayerIndex + 4].valueTwo}
+            suit={Deck[hitIndex + 4].suit}
+            color={Deck[hitIndex + 4].color}
+            char={Deck[hitIndex + 4].char}
+            value={Deck[hitIndex + 4].char}
+            valueTwo={Deck[hitIndex + 4].valueTwo}
           />
         </div>
-        <div className={dealerDrawIndex >= 4 ? "fifth-card" : "card-hidding"}>
+        <div className={drawCard >=5 ? "fifth-card" : "card-hidding"}>
           <Card
-            suit={props.Deck[props.lastPlayerIndex + 5].suit}
-            color={props.Deck[props.lastPlayerIndex + 5].color}
-            char={props.Deck[props.lastPlayerIndex + 5].char}
-            value={props.Deck[props.lastPlayerIndex + 5].char}
-            valueTwo={props.Deck[props.lastPlayerIndex + 5].valueTwo}
+            suit={Deck[hitIndex + 5].suit}
+            color={Deck[hitIndex + 5].color}
+            char={Deck[hitIndex + 5].char}
+            value={Deck[hitIndex + 5].char}
+            valueTwo={Deck[hitIndex + 5].valueTwo}
           />
         </div>
-        <div className={dealerDrawIndex >= 5 ? "sixth-card" : "card-hidding"}>
+        <div className={drawCard >=6 ? "sixth-card" : "card-hidding"}>
           <Card
-            suit={props.Deck[props.lastPlayerIndex + 6].suit}
-            color={props.Deck[props.lastPlayerIndex + 6].color}
-            char={props.Deck[props.lastPlayerIndex + 6].char}
-            value={props.Deck[props.lastPlayerIndex + 6].char}
-            valueTwo={props.Deck[props.lastPlayerIndex + 6].valueTwo}
+            suit={Deck[hitIndex + 6].suit}
+            color={Deck[hitIndex + 6].color}
+            char={Deck[hitIndex + 6].char}
+            value={Deck[hitIndex + 6].char}
+            valueTwo={Deck[hitIndex + 6].valueTwo}
           />
         </div>
+        {dealerWins && <div className="dealer-total">
+          <h2>Dealer Wins</h2>
+        </div>}
+        {youWin && <div className="dealer-total">
+          <h2>You Win!</h2>
+        </div>}
         {totalDisplay && <div className="dealer-total">
           <h2>{`Dealer Total: ${dealerTotal}`}</h2>
         </div>}

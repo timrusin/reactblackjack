@@ -23,7 +23,6 @@ const Game = () => {
 
     const placeBet = () => {
         setCash(cash - currentBet)
-        
         dealCards()
     }
 
@@ -63,7 +62,8 @@ const Game = () => {
 
     useEffect(()=> {
         if (total === 21 && hitIndex === 1){
-        blackJackWin()
+        setHitStand(false)
+        setTimeout(blackJackWin, 1000)
         }
          if (total > 21){
             setTimeout(busted,400)
@@ -77,8 +77,6 @@ const Game = () => {
         setBetPlaced(false)
     }
     const blackJackWin = () => {
-        setHitStand(false)
-        console.log(currentBet);
         setCash(cash + currentBet)
         setBlackJack(true)
         setBetPlaced(false)
@@ -102,7 +100,12 @@ const Game = () => {
        {stand && <Dealer
        Deck = {Deck}
        total = {total}
-       lastPlayerIndex = {hitIndex}
+       setTotal = {setTotal}
+       setHitIndex = {setHitIndex}
+       hitIndex = {hitIndex}
+       setBetPlaced = {setBetPlaced}
+       setCardOne = {setCardOne}
+       setCardTwo = {setCardTwo}
        />}
 
         <div className='win-loose-message'>
