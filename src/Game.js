@@ -23,7 +23,6 @@ const Game = () => {
 
     const placeBet = () => {
         setCash(cash - currentBet)
-        
         dealCards()
     }
 
@@ -101,8 +100,11 @@ const Game = () => {
        {stand && <Dealer
        Deck = {Deck}
        total = {total}
+       setTotal = {setTotal}
        hitIndex = {hitIndex}
        setBetPlaced = {setBetPlaced}
+       setCardOne = {setCardOne}
+       setCardTwo = {setCardTwo}
        />}
 
         <div className='win-loose-message'>
