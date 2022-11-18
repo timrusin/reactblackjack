@@ -38,13 +38,13 @@ const Dealer = ({ setCardOne, setCardTwo, setBetPlaced, Deck, setTotal, total, s
           const drawInterval = setInterval(()=>{
             setDrawCard(drawCard + 1)
             setDealerTotal(dealerTotal + Deck[hitIndex + 3].value)
-            if (dealerTotal > total && dealerTotal < 21){
-              setDealerWins(true)
+            if (dealerTotal === total){
               clearInterval(drawInterval)
-            } else if (dealerTotal > 21){
-              setYouWin(true)
+            } if (dealerTotal > 21){
               clearInterval(drawInterval)
-            }
+            } if (dealerTotal > total && dealerTotal < 21){
+              clearInterval(drawInterval)
+            } 
           },2000)
         }
       }
@@ -80,7 +80,7 @@ const Dealer = ({ setCardOne, setCardTwo, setBetPlaced, Deck, setTotal, total, s
             setHitIndex(1)
           },2000)
         }
-      },[dealerTotal, setTotal, total, setBetPlaced, setCardOne, setCardTwo])
+      },[dealerTotal, setTotal, total, setHitIndex, setBetPlaced, setCardOne, setCardTwo])
 
       
     
