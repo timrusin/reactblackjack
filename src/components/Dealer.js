@@ -65,7 +65,7 @@ const Dealer = ({ setCardOne, setCardTwo, setBetPlaced, Deck, setTotal, total, s
             setTotalDisplay(false)
             setDealerWins(true)
             setHitIndex(1)
-          },1000)
+          },2000)
         } else if (dealerTotal > 21){
           setTimeout(()=>{
             setStand(false)
@@ -80,7 +80,7 @@ const Dealer = ({ setCardOne, setCardTwo, setBetPlaced, Deck, setTotal, total, s
             setTotalDisplay(false)
             setYouWin(true)
             setHitIndex(1)
-          },1000)
+          },2000)
         }
       },[dealerTotal, setTotal, total, setHitIndex, setBetPlaced, setCardOne, setCardTwo, setStand])
 
