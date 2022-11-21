@@ -102,6 +102,7 @@ const Game = () => {
        total = {total}
        setTotal = {setTotal}
        setHitIndex = {setHitIndex}
+       setStand = {setStand}
        hitIndex = {hitIndex}
        setBetPlaced = {setBetPlaced}
        setCardOne = {setCardOne}

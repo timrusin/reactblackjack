@@ -3,7 +3,7 @@ import './Dealer.css'
 import Card from './Card'
 
 
-const Dealer = ({ setCardOne, setCardTwo, setBetPlaced, Deck, setTotal, total, setHitIndex, hitIndex}) => {
+const Dealer = ({ setCardOne, setCardTwo, setBetPlaced, Deck, setTotal, total, setStand, setHitIndex, hitIndex}) => {
     const [dealerCardOne, setDealerCardOne] = useState('')
     const [dealerCardTwo, setDealerCardTwo] = useState('')
     const [drawCard, setDrawCard] = useState (2)
@@ -51,8 +51,9 @@ const Dealer = ({ setCardOne, setCardTwo, setBetPlaced, Deck, setTotal, total, s
       setTimeout(dealerDraw,800)
         
       useEffect(()=>{
-        if (dealerTotal > total && dealerTotal < 21){
+        if (dealerTotal > total && dealerTotal <= 21){
           setTimeout(()=>{
+            setStand(false)
             setDrawCard(0)
             setTotal(0)
             setBetPlaced(false)
@@ -64,9 +65,10 @@ const Dealer = ({ setCardOne, setCardTwo, setBetPlaced, Deck, setTotal, total, s
             setTotalDisplay(false)
             setDealerWins(true)
             setHitIndex(1)
-          },2000)
+          },1000)
         } else if (dealerTotal > 21){
           setTimeout(()=>{
+            setStand(false)
             setDrawCard(0)
             setTotal(0)
             setBetPlaced(false)
@@ -78,9 +80,9 @@ const Dealer = ({ setCardOne, setCardTwo, setBetPlaced, Deck, setTotal, total, s
             setTotalDisplay(false)
             setYouWin(true)
             setHitIndex(1)
-          },2000)
+          },1000)
         }
-      },[dealerTotal, setTotal, total, setHitIndex, setBetPlaced, setCardOne, setCardTwo])
+      },[dealerTotal, setTotal, total, setHitIndex, setBetPlaced, setCardOne, setCardTwo, setStand])
 
       
     
