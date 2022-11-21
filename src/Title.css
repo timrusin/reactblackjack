@@ -1,11 +1,11 @@
 .game-title {
-    font-family: cursive;
+    font-family: nabla;
     color: goldenrod;
   }
 
   @media screen and (max-width: 800px) {
     .game-title {
-      font-size: 35px;
+      font-size: 8vw;
       margin-bottom: 20px;
     }
   
