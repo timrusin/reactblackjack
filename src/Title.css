@@ -1,5 +1,6 @@
 .game-title {
     font-family: 'Nabla', cursive;
+    color: goldenrod;
   }
 
   @media screen and (max-width: 800px) {
