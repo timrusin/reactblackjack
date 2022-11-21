@@ -9,9 +9,6 @@ const Game = () => {
     const [currentBet, setCurrentBet] = useState(10)
     const [betPlaced, setBetPlaced] = useState(false)
     const [stand, setStand] = useState (false)
-    const [cardOne, setCardOne] = useState(false)
-    const [cardTwo, setCardTwo] = useState(false)
-    const [hitIndex, setHitIndex] = useState(1)
     const [hitStand, setHitStand] = useState(false)
     const [total, setTotal] = useState(0)
     const [blackJack, setBlackJack] = useState(false)
@@ -27,32 +24,16 @@ const Game = () => {
     }
 
     const dealCards = () =>{
-        Deck.sort((a,b) => 0.5 - Math.random());
-        setCardOne(false)
-        setCardTwo(false)
-        setHitIndex(1)
-        setBlackJack(false)
-        setBust(false)
+     
+    }
 
-        const CardTwo = () => {
-            setCardTwo(true)
-            setTimeout(()=>{setHitStand(true)},800)
-            setTimeout(()=>{setBetPlaced(true)},800)
-        }
-        setTimeout(()=>setCardOne(true))
-        setTimeout(CardTwo,400)
-       
-        if (Deck[0].value + Deck[1].valueTwo <=21){
-            setTotal(Deck[0].value + Deck[1].valueTwo)
-        } else if (Deck[0].valueTwo + Deck[1].value <=21){
-            setTotal(Deck[0].valueTwo + Deck[1].value)
-        } else {
-        setTotal(Deck[0].value + Deck[1].value)
-    }
-    }
+
+
+
+    
     const Hit = () =>{
-        setHitIndex(hitIndex + 1)
-        setTimeout(()=>setTotal(total + Deck[hitIndex+1].value),800)
+
+        
     }
 
     const Stand = () =>{
@@ -60,16 +41,7 @@ const Game = () => {
         setStand(true)
     }
 
-    useEffect(()=> {
-        if (total === 21 && hitIndex === 1){
-        setHitStand(false)
-        setTimeout(blackJackWin, 1000)
-        }
-         if (total > 21){
-            setTimeout(busted,400)
-        }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[hitStand, total])
+
     
     const busted = () => {
         setBust(true)
