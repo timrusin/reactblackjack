@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import Deck from './data/Deck'
 import './Game.css'
 
 const Game = () => {
@@ -11,6 +12,10 @@ const Game = () => {
     const [blackJack, setBlackJack] = useState(false)
     const [bust, setBust] = useState(false)
 
+    const playerCards = []
+    const dealerCards = []
+    Deck.sort((a,b) => 0.5 - Math.random())
+
     const handleChange = (e) => {
         setCurrentBet(e.target.value)
     }
@@ -21,11 +26,18 @@ const Game = () => {
     }
 
     const dealCards = () =>{
-        console.log("Deal out player and dealer initial cards");
         setTimeout(()=> {
-
-        },400)
+            console.log(playerCards);
+            console.log(dealerCards);
+            playerCards.push(Deck.pop())
+            dealerCards.push(Deck.pop())
+            if (dealerCards.length === 2){
+                clearTimeout()
+            } else {dealCards()}
+            
+        },800)
     }
+
 
 
 
