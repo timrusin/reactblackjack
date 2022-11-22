@@ -1,7 +1,7 @@
 .game-page-container {
     width: 100vw;
     height: 100vh;
-    background-image: url('/public/images/tabletest.jpeg');
+    /* background-image: url('/public/images/tabletest.jpeg'); */
     background-size: cover;
 }
 
@@ -42,7 +42,6 @@
     top: 2px;
     left: 10px;
     font-size: 40px;
-    color: #000;
 }
 
 .win-loose-message {

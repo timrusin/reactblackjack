@@ -1,8 +1,5 @@
 import { useState, useEffect } from 'react'
 import './Game.css'
-import Card from './components/Card'
-import Deck from './data/Deck'
-import Dealer from './components/Dealer'
 
 const Game = () => {
     const [cash, setCash] = useState(1000)
@@ -24,7 +21,10 @@ const Game = () => {
     }
 
     const dealCards = () =>{
-     
+        console.log("Deal out player and dealer initial cards");
+        setTimeout(()=> {
+
+        },400)
     }
 
 
@@ -37,7 +37,7 @@ const Game = () => {
     }
 
     const Stand = () =>{
-        setHitStand(false)
+
         setStand(true)
     }
 
@@ -45,7 +45,7 @@ const Game = () => {
     
     const busted = () => {
         setBust(true)
-        setHitStand(false)
+
         setBetPlaced(false)
     }
     const blackJackWin = () => {
@@ -69,84 +69,14 @@ const Game = () => {
         {!betPlaced && <button className='bet-button' onClick={placeBet}>PLACE BET</button>}
         {!betPlaced && <h1 className='place-bet'>Place Your Bet</h1>}
        
-       {stand && <Dealer
-       Deck = {Deck}
-       total = {total}
-       setTotal = {setTotal}
-       setHitIndex = {setHitIndex}
-       setStand = {setStand}
-       hitIndex = {hitIndex}
-       setBetPlaced = {setBetPlaced}
-       setCardOne = {setCardOne}
-       setCardTwo = {setCardTwo}
-       />}
+      
 
         <div className='win-loose-message'>
             {blackJack && <h1>BLACK JACK!</h1>}
             {bust && <h1>{`${total}, Busted! Bummer`}</h1>}
         </div>
 
-        <div className='player-card-container'>
-            <div className={cardOne ? 'first-card' : 'card-hidding'}>
-                <Card 
-                suit = {Deck[0].suit}
-                color = {Deck[0].color}
-                char = {Deck[0].char}
-                value = {Deck[0].char}
-                valueTwo = {Deck[0].valueTwo}
-
-                />
-            </div>
-            <div className={cardTwo ? 'second-card' : 'card-hidding'}>
-                <Card 
-                 suit = {Deck[1].suit}
-                 color = {Deck[1].color}
-                 char = {Deck[1].char}
-                 value = {Deck[1].char}
-                 valueTwo = {Deck[1].valueTwo}
-                />
-            </div>
-
-            <div className={hitIndex >= 2 ? 'third-card' : 'card-hidding'}>
-                <Card 
-                 suit = {Deck[2].suit}
-                 color = {Deck[2].color}
-                 char = {Deck[2].char}
-                 value = {Deck[2].char}
-                 valueTwo = {Deck[2].valueTwo}
-                />
-            </div>
-
-            <div className={hitIndex >= 3 ? 'fourth-card' : 'card-hidding'}>
-                <Card 
-                 suit = {Deck[3].suit}
-                 color = {Deck[3].color}
-                 char = {Deck[3].char}
-                 value = {Deck[3].char}
-                 valueTwo = {Deck[3].valueTwo}
-                />
-            </div>
-
-            <div className={hitIndex >= 4 ? 'fifth-card' : 'card-hidding'}>
-                <Card 
-                 suit = {Deck[4].suit}
-                 color = {Deck[4].color}
-                 char = {Deck[4].char}
-                 value = {Deck[4].char}
-                 valueTwo = {Deck[4].valueTwo}
-                />
-            </div>
-
-            <div className={hitIndex >= 5 ? 'sixth-card' : 'card-hidding'}>
-                <Card 
-                 suit = {Deck[5].suit}
-                 color = {Deck[5].color}
-                 char = {Deck[5].char}
-                 value = {Deck[5].char}
-                 valueTwo = {Deck[5].valueTwo}
-                />
-            </div>
-        </div>
+     
             {betPlaced && <h2 className='player-total'>{`Your Total: ${total}`}</h2>}
             <div className='player-buttons'>
                 {hitStand && <button className='hit-stand' onClick={Hit}> HIT </button>}
