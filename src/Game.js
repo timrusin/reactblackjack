@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import Deck from './data/Deck'
+import Card from './components/Card'
 import './Game.css'
 
 const Game = () => {
@@ -26,9 +27,8 @@ const Game = () => {
     }
 
     const dealCards = () =>{
+        setBetPlaced(true)
         setTimeout(()=> {
-            console.log(playerCards);
-            console.log(dealerCards);
             playerCards.push(Deck.pop())
             dealerCards.push(Deck.pop())
             if (dealerCards.length === 2){
@@ -88,6 +88,14 @@ const Game = () => {
             {bust && <h1>{`${total}, Busted! Bummer`}</h1>}
         </div>
 
+        <div className='playerCardsContainer'>
+            {playerCards.map((card)=>{
+                return (
+                   <Card {...card}/>
+                )
+            })}
+
+        </div>
      
             {betPlaced && <h2 className='player-total'>{`Your Total: ${total}`}</h2>}
             <div className='player-buttons'>

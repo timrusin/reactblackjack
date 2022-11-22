@@ -52,6 +52,12 @@
     font-size: 17px;
 }
 
+.playerCardsContainer {
+    position: absolute;
+    top: 315px;
+    left: 5px;
+}
+
 .player-total {
     position: absolute;
     top: 600px;
