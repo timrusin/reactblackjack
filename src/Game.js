@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Deck from './data/Deck'
 import Card from './components/Card'
 import './Game.css'
@@ -45,8 +45,16 @@ const Game = () => {
         for (let i=0; i<playerCards.length; i++){
             added += playerCards[i].value
             setTotal(added)
-    }}
 
+        }}
+        useEffect(()=>{
+            if (total === 21 && playerCards.length===2){
+                setTimeout(blackJackWin, 400)
+            } if (total>21){
+                setTimeout(busted, 400)
+            }
+        })
+        
     const Hit = () =>{
         playerCards.push(Deck.pop())
         playerSum()
@@ -54,13 +62,14 @@ const Game = () => {
 
     const Stand = () =>{
         setStand(true)
+        setHitStand(false)
     }
 
 
     
     const busted = () => {
         setBust(true)
-
+        setHitStand(false)
         setBetPlaced(false)
     }
     const blackJackWin = () => {
