@@ -97,6 +97,8 @@ const Game = () => {
         setBlackJack(false)
         setHitStand(false)
     }
+
+    
   return (
     <div className='game-page-container'>
         <div className='cash'>{ `$ ${cash}` }</div>
@@ -112,8 +114,6 @@ const Game = () => {
         {!betPlaced && <button className='bet-button' onClick={placeBet}>PLACE BET</button>}
         {!betPlaced && <h1 className='place-bet'>Place Your Bet</h1>}
        
-      
-
         <div className='win-loose-message'>
             {blackJack && <h1>BLACK JACK!</h1>}
             {bust && <h1>{`${total}, Busted! Bummer`}</h1>}
@@ -124,7 +124,6 @@ const Game = () => {
                 return <Card key={item.id} {...item}/>
            })}
         </div>
-
 
         <div className='playerCardsContainer'>
            {playerCards.map(item => {
