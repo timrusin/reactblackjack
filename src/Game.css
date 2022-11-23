@@ -7,6 +7,7 @@
 
 .cash {
     position: absolute;
+    padding-left: 50px;
     right: 20px;
     top: 10px;
     font-weight: bold;
@@ -54,7 +55,7 @@
 
 .playerCardsContainer {
     position: absolute;
-    top: 315px;
+    top: 300px;
     left: 5px;
 }
 
