@@ -17,6 +17,7 @@ const Game = () => {
     const [dealerTotal, setDealerTotal] = useState(0)
     const [blackJack, setBlackJack] = useState(false)
     const [bust, setBust] = useState(false)
+    const [dealerWins, setDealerWins] = useState(false)
 
     //shuffles the deck
     Deck.sort((a,b) => 0.5 - Math.random())
@@ -76,14 +77,14 @@ const Game = () => {
         }
     }
 
-    useEffect(()=>{
-        setTimeout(()=>{
-            dealerCards.push(Deck.pop())
-            if (dealerTotal<21){
-                dealerSum()
-            }
-        },800)
-    },[stand])
+    // useEffect(()=>{
+    //     setTimeout(()=>{
+    //         dealerCards.push(Deck.pop())
+    //         if (dealerTotal<21){
+    //             dealerSum()
+    //         }
+    //     },800)
+    // })
     
 
     
@@ -149,6 +150,7 @@ const Game = () => {
         <div className='win-loose-message'>
             {blackJack && <h1>BLACK JACK!</h1>}
             {bust && <h1>{`${total}, Busted! Bummer`}</h1>}
+            {dealerWins && <h1>Dealer Wins</h1>}
         </div>
 
         <div className='dealerCardsContainer'>
