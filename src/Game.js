@@ -14,6 +14,7 @@ const Game = () => {
     const [stand, setStand] = useState (false)
     const [hitStand, setHitStand] = useState(false)
     const [total, setTotal] = useState(0)
+    const [dealerTotal, setDealerTotal] = useState(0)
     const [blackJack, setBlackJack] = useState(false)
     const [bust, setBust] = useState(false)
 
@@ -25,7 +26,7 @@ const Game = () => {
         setCurrentBet(e.target.value)
     }
 
-    //sets bet, removes cash, and calls the deal function 
+    //sets bet, subtracts bet from cash, and calls the deal function 
     const placeBet = () => {
         setCash(cash - currentBet)
         setBetPlaced(true)
@@ -64,10 +65,34 @@ const Game = () => {
             } if (total>21){
                 setTimeout(busted, 400)
             }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        },[total])
+        })
     
-    //allows player to hit for another card and calculates total
+    //! checks for dealer total. Should be a way to pass arguments into this as one funtion as opposed to two redundant ones
+    const dealerSum = ()=> {
+        let added = 0
+        for (let i=0; i<dealerCards.length; i++){
+            added += dealerCards[i].value
+            setDealerTotal(added)
+        }
+    }
+
+    useEffect(()=>{
+        setTimeout(()=>{
+            dealerCards.push(Deck.pop())
+            if (dealerTotal<21){
+                dealerSum()
+            }
+        },800)
+    },[stand])
+    
+
+    
+
+    
+      
+
+
+    //allows player to hit for another card and calculates/updates total
     const Hit = () =>{
         playerCards.push(Deck.pop())
         playerSum()
@@ -77,7 +102,9 @@ const Game = () => {
     const Stand = () =>{
         setStand(true)
         setHitStand(false)
+        dealerSum()
     }
+
 
     //when player busts
     const busted = () => {
@@ -100,6 +127,7 @@ const Game = () => {
         setBust(false)
         setBlackJack(false)
         setHitStand(false)
+        setStand(false)
     }
 
 
@@ -128,6 +156,8 @@ const Game = () => {
                 return <Card key={item.id} {...item}/>
            })}
         </div>
+
+        {stand && <h2 className='dealer-total'>{`Dealer's Total: ${dealerTotal}`}</h2>}
 
         <div className='playerCardsContainer'>
            {playerCards.map(item => {

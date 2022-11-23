@@ -66,6 +66,12 @@
     left: 130px;
 }
 
+.dealer-total {
+    position: absolute;
+    top: 300px;
+    left: 5px;
+}
+
 .player-total {
     position: absolute;
     top: 600px;
