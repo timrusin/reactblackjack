@@ -52,10 +52,17 @@
     font-size: 17px;
 }
 
+.dealerCardsContainer {
+    display: flex;
+    position: absolute;
+    top: 30px;
+    left: 130px;
+}
+
 .playerCardsContainer {
     display: flex;
     position: absolute;
-    top: 300px;
+    top: 325px;
     left: 130px;
 }
 

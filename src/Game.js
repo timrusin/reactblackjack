@@ -47,7 +47,6 @@ const Game = () => {
             setTotal(added)
     }}
 
-
     const Hit = () =>{
         playerCards.push(Deck.pop())
         playerSum()
@@ -92,7 +91,11 @@ const Game = () => {
             {bust && <h1>{`${total}, Busted! Bummer`}</h1>}
         </div>
 
-
+        <div className='dealerCardsContainer'>
+        {dealerCards.map(item => {
+                return <Card key={item.id} {...item}/>
+           })}
+        </div>
 
 
         <div className='playerCardsContainer'>
