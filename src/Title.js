@@ -24,8 +24,7 @@ function Title() {
       <Link to='/game'><button className='play-button' style={{opacity: randomOpacity}}>PLAY</button></Link>
         
         <div className='cards-container'>
-
-          <div className="cards inner-border card-one title-one">
+          <div className="title-cards inner-border title-one">
             <div className="top-left">
                 <h1 style={{ color: Deck[0].color }} className="card-value">
                   {Deck[0].value}
@@ -41,7 +40,7 @@ function Title() {
              </div>
           </div>
 
-          <div className="cards inner-border card-two title-two">
+          <div className="title-cards inner-border title-two">
             <div className="top-left">
                 <h1 style={{ color: Deck[1].color }} className="card-value">
                   {Deck[1].value}
