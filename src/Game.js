@@ -8,6 +8,7 @@ let playerCards = []
 let dealerCards = []
 
 const Game = () => {
+    //!Too much state management still
     const [cash, setCash] = useState(1000)
     const [currentBet, setCurrentBet] = useState(10)
     const [betPlaced, setBetPlaced] = useState(false)
@@ -40,7 +41,7 @@ const Game = () => {
     const dealCards = () =>{
         setBetPlaced(true)
         setTimeout(()=> {
-            setHitStand(true)
+            setTimeout(()=>setHitStand(true),1200)
             playerCards.push(Deck.pop())
             dealerCards.push(Deck.pop())
             setTotal(playerCards[0].value)
@@ -77,14 +78,7 @@ const Game = () => {
         }
     }
 
-    // useEffect(()=>{
-    //     setTimeout(()=>{
-    //         dealerCards.push(Deck.pop())
-    //         if (dealerTotal<21){
-    //             dealerSum()
-    //         }
-    //     },800)
-    // })
+    
     
 
     
