@@ -7,7 +7,6 @@
 
 .cash {
     position: absolute;
-    padding-left: 50px;
     right: 20px;
     top: 10px;
     font-weight: bold;
@@ -54,9 +53,10 @@
 }
 
 .playerCardsContainer {
+    display: flex;
     position: absolute;
     top: 300px;
-    left: 5px;
+    left: 130px;
 }
 
 .player-total {

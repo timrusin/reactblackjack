@@ -3,8 +3,6 @@ import Deck from './data/Deck'
 import Card from './components/Card'
 import './Game.css'
 
-
-
 let playerCards = []
 let dealerCards = []
 
@@ -14,8 +12,6 @@ const Game = () => {
     const [betPlaced, setBetPlaced] = useState(false)
     const [stand, setStand] = useState (false)
     const [hitStand, setHitStand] = useState(false)
-    // const [playerHand, setPlayerHand] = useState([])
-    // const [dealerHand, setDealerHand] = useState([])
     const [total, setTotal] = useState(0)
     const [blackJack, setBlackJack] = useState(false)
     const [bust, setBust] = useState(false)
@@ -33,25 +29,28 @@ const Game = () => {
 
     const dealCards = () =>{
         setBetPlaced(true)
-
         setTimeout(()=> {
             setHitStand(true)
             playerCards.push(Deck.pop())
             dealerCards.push(Deck.pop())
             if (dealerCards.length === 2){
+                playerSum(playerCards)
                 clearTimeout()
             } else {dealCards()}
         },800)
     }
-
-
-
-
-
     
+    const playerSum = ()=> {
+        let added = 0
+        for (let i=0; i<playerCards.length; i++){
+            added += playerCards[i].value
+            setTotal(added)
+    }}
+
+
     const Hit = () =>{
-        console.log(dealerCards);
-        console.log(playerCards);
+        playerCards.push(Deck.pop())
+        playerSum()
     }
 
     const Stand = () =>{
@@ -93,12 +92,19 @@ const Game = () => {
             {bust && <h1>{`${total}, Busted! Bummer`}</h1>}
         </div>
 
+
+
+
         <div className='playerCardsContainer'>
            {playerCards.map(item => {
                 return <Card key={item.id} {...item}/>
            })}
         </div>
      
+
+     
+
+
             {betPlaced && <h2 className='player-total'>{`Your Total: ${total}`}</h2>}
             <div className='player-buttons'>
                 {hitStand && <button className='hit-stand' onClick={Hit}> HIT </button>}

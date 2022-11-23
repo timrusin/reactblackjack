@@ -1,66 +1,11 @@
-    .player-card-container{
-      position: absolute;
-      margin-left: 5px;
-    }
+   
     .cards{
-      margin: 50px 5px 0 5px;
+      margin: 50px 5px 0 -120px;
+      z-index: 90;
       background: rgb(243, 234, 218);
       width: 150px;
       height: 225px;
       border-radius: 5px;
-      filter: drop-shadow(5px 0px 8px rgb(0, 0, 0));
-    }
-
-    .card-hidding {
-      position: absolute;
-      top: -400px;
-    }
-
-    .first-card {
-      position: absolute;
-      transform: rotate(720deg);
-      top: 330px;
-      transition: all ease-in 600ms;
-    }
-  
-    .second-card {
-      position: absolute;
-      top: 330px;
-      left: 45px;
-      transform: rotate(720deg);
-      transition: all ease-in 600ms;
-    }
-  
-    .third-card {
-      position: absolute;
-      top: 330px;
-      left: 95px;
-      transform: rotate(720deg);
-      transition: all ease-in 600ms;
-    }
-  
-    .fourth-card {
-      position: absolute;
-      top: 330px;
-      left: 145px;
-      transform: rotate(720deg);
-      transition: all ease-in 600ms;
-    }
-  
-    .fifth-card {
-      position: absolute;
-      top: 330px;
-      left: 195px;
-      transform: rotate(720deg);
-      transition: all ease-in 600ms;
-    }
-
-    .sixth-card {
-      position: absolute;
-      top: 330px;
-      left: 245px;
-      transform: rotate(720deg);
-      transition: all ease-in 600ms;
     }
   
     .inner-border {
@@ -70,7 +15,6 @@
   
     .top-left{
       position: relative;
-      /* text-align: center; */
       font-family: serif;
       left: 6px;
       top: -20px;
@@ -91,7 +35,6 @@
   
     .bottom-right{
       position: relative;
-      /* text-align: center; */
       right: 6px;
       top: 28px;
       font-family: serif;
