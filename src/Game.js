@@ -3,6 +3,7 @@ import Deck from './data/Deck'
 import Card from './components/Card'
 import './Game.css'
 
+//dealer and player hands in global scope
 let playerCards = []
 let dealerCards = []
 
@@ -16,17 +17,22 @@ const Game = () => {
     const [blackJack, setBlackJack] = useState(false)
     const [bust, setBust] = useState(false)
 
+    //shuffles the deck
     Deck.sort((a,b) => 0.5 - Math.random())
 
+    //sees change in bet value
     const handleChange = (e) => {
         setCurrentBet(e.target.value)
     }
-
+    //sets bet, removes cash, and calls the deal function 
     const placeBet = () => {
         setCash(cash - currentBet)
+        setBetPlaced(true)
+        playerCards = []
+        dealerCards = []
         dealCards()
     }
-
+    //deals cards, removes place bet button, adds hit-stand buttons
     const dealCards = () =>{
         setBetPlaced(true)
         setTimeout(()=> {
@@ -40,6 +46,7 @@ const Game = () => {
         },800)
     }
     
+    //calculates the sum of player's cards and sets it to total state
     const playerSum = ()=> {
         let added = 0
         for (let i=0; i<playerCards.length; i++){
@@ -47,14 +54,18 @@ const Game = () => {
             setTotal(added)
 
         }}
+        //checks total of user's cards for black jack or bust
         useEffect(()=>{
-            if (total === 21 && playerCards.length===2){
+            if (total === 21 && playerCards.length === 2){
                 setTimeout(blackJackWin, 400)
             } if (total>21){
                 setTimeout(busted, 400)
             }
-        })
-        
+            
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        },[total])
+    
+    //allows player to hit for another card and calculates total
     const Hit = () =>{
         playerCards.push(Deck.pop())
         playerSum()
@@ -65,19 +76,25 @@ const Game = () => {
         setHitStand(false)
     }
 
-
-    
     const busted = () => {
-        setBust(true)
         setHitStand(false)
-        setBetPlaced(false)
+        setBust(true)
+        setTimeout(reset, 1000)
     }
     const blackJackWin = () => {
         setCash(cash + currentBet)
-        setBlackJack(true)
-        setBetPlaced(false)
+        setTimeout(reset, 1000)
     }
     
+    const reset = () => {
+        playerCards = []
+        dealerCards = []
+        setTotal(0)
+        setBetPlaced(false)
+        setBust(false)
+        setBlackJack(false)
+        setHitStand(false)
+    }
   return (
     <div className='game-page-container'>
         <div className='cash'>{ `$ ${cash}` }</div>
