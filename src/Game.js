@@ -39,8 +39,9 @@ const Game = () => {
             setHitStand(true)
             playerCards.push(Deck.pop())
             dealerCards.push(Deck.pop())
+            setTotal(playerCards[0].value)
             if (dealerCards.length === 2){
-                playerSum(playerCards)
+                playerSum()
                 clearTimeout()
             } else {dealCards()}
         },800)
@@ -70,22 +71,23 @@ const Game = () => {
         playerCards.push(Deck.pop())
         playerSum()
     }
-
+    //calls dealer to draw their cards on stand
     const Stand = () =>{
         setStand(true)
         setHitStand(false)
     }
-
+    //when player busts
     const busted = () => {
         setHitStand(false)
         setBust(true)
-        setTimeout(reset, 1000)
+        setTimeout(reset, 1500)
     }
+    //when player gets blackjack
     const blackJackWin = () => {
         setCash(cash + currentBet)
-        setTimeout(reset, 1000)
+        setTimeout(reset, 1500)
     }
-    
+    //resets for new hand 
     const reset = () => {
         playerCards = []
         dealerCards = []
