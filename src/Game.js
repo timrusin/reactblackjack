@@ -104,6 +104,7 @@ const Game = () => {
     //when player busts
     const busted = () => {
         setBust(true)
+        setHitStand(false)
         setTimeout(reset, 1500)
     }
 
