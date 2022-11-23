@@ -24,6 +24,7 @@ const Game = () => {
     const handleChange = (e) => {
         setCurrentBet(e.target.value)
     }
+
     //sets bet, removes cash, and calls the deal function 
     const placeBet = () => {
         setCash(cash - currentBet)
@@ -32,7 +33,8 @@ const Game = () => {
         dealerCards = []
         dealCards()
     }
-    //deals cards, removes place bet button, adds hit-stand buttons
+
+    //deals player and dealer cards adding them to the arrays, removes place bet button, adds hit-stand buttons
     const dealCards = () =>{
         setBetPlaced(true)
         setTimeout(()=> {
@@ -53,8 +55,8 @@ const Game = () => {
         for (let i=0; i<playerCards.length; i++){
             added += playerCards[i].value
             setTotal(added)
-
         }}
+
         //checks total of user's cards for black jack or bust
         useEffect(()=>{
             if (total === 21 && playerCards.length === 2){
@@ -62,7 +64,6 @@ const Game = () => {
             } if (total>21){
                 setTimeout(busted, 400)
             }
-            
         // eslint-disable-next-line react-hooks/exhaustive-deps
         },[total])
     
@@ -71,22 +72,25 @@ const Game = () => {
         playerCards.push(Deck.pop())
         playerSum()
     }
+
     //calls dealer to draw their cards on stand
     const Stand = () =>{
         setStand(true)
         setHitStand(false)
     }
+
     //when player busts
     const busted = () => {
-        setHitStand(false)
         setBust(true)
         setTimeout(reset, 1500)
     }
+
     //when player gets blackjack
     const blackJackWin = () => {
         setCash(cash + currentBet)
         setTimeout(reset, 1500)
     }
+
     //resets for new hand 
     const reset = () => {
         playerCards = []
@@ -98,7 +102,7 @@ const Game = () => {
         setHitStand(false)
     }
 
-    
+
   return (
     <div className='game-page-container'>
         <div className='cash'>{ `$ ${cash}` }</div>
@@ -130,16 +134,12 @@ const Game = () => {
                 return <Card key={item.id} {...item}/>
            })}
         </div>
-     
-
-     
-
-
-            {betPlaced && <h2 className='player-total'>{`Your Total: ${total}`}</h2>}
+        
+        {betPlaced && <h2 className='player-total'>{`Your Total: ${total}`}</h2>}
             <div className='player-buttons'>
                 {hitStand && <button className='hit-stand' onClick={Hit}> HIT </button>}
                 {hitStand && <button className='hit-stand' onClick={Stand}> STAND </button>}
-             </div>
+            </div>
     </div>
   )
 }
