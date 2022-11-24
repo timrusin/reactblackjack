@@ -18,7 +18,6 @@ const Game = () => {
     const [dealerTotal, setDealerTotal] = useState(0)
     const [blackJack, setBlackJack] = useState(false)
     const [bust, setBust] = useState(false)
-    const [dealerWins, setDealerWins] = useState(false)
 
     //shuffles the deck
     Deck.sort((a,b) => 0.5 - Math.random())
@@ -44,7 +43,7 @@ const Game = () => {
             setTimeout(()=>setHitStand(true),1200)
             playerCards.push(Deck.pop())
             dealerCards.push(Deck.pop())
-            setTotal(playerCards[0].value)
+            setTotal(playerCards[0].value) //adds the value of the first card in the displayed total
             if (dealerCards.length === 2){
                 cardsSum(playerCards, setTotal)
                 clearTimeout()
@@ -82,7 +81,6 @@ const Game = () => {
         cardsSum(dealerCards, setDealerTotal)
     }
 
-
     //when player busts
     const busted = () => {
         setBust(true)
@@ -108,7 +106,6 @@ const Game = () => {
         setStand(false)
     }
 
-
   return (
     <div className='game-page-container'>
         <div className='cash'>{ `$ ${cash}` }</div>
@@ -127,7 +124,6 @@ const Game = () => {
         <div className='win-loose-message'>
             {blackJack && <h1>BLACK JACK!</h1>}
             {bust && <h1>{`${total}, Busted! Bummer`}</h1>}
-            {dealerWins && <h1>Dealer Wins</h1>}
         </div>
 
         <div className='dealerCardsContainer'>
