@@ -5,14 +5,14 @@ import Title from './Title';
 
 function App() {
   
-  return (
+  return ( 
     <div className="App">
-        <Routes>
-          <Route path='/' element={<Title/>} />
-          <Route path="/game" element={<Game/>} />
-        </Routes>
+          <Routes>
+              <Route path='/' element={<Title/>} />
+              <Route path="/game" element={<Game/>} />
+          </Routes>
     </div>
   );
 }
-
+ 
 export default App;

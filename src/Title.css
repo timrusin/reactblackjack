@@ -1,8 +1,31 @@
 .game-title {
-    font-family: nabla, Arial, Helvetica, sans-serif;
-    color: goldenrod;
+  font-family: nabla, Arial, Helvetica, sans-serif;
+  color: goldenrod;
+}
+.cards-container{
+  display: flex;
+  flex-direction: row;
+  margin-top: 50px;
+}
+
+.title-cards{
+  z-index: 90;
+  background: rgb(243, 234, 218);
+  width: 150px;
+  height: 225px;
+  border-radius: 5px;
+}
+  .title-one {
+    position: relative;
+    transform: rotate(-30deg);
+    left: 30px;
   }
 
+  .title-two {
+    position: relative;
+    transform: rotate(30deg);
+    right: 30px;
+  }
   @media screen and (max-width: 800px) {
     .game-title {
       font-size: 8vw;
@@ -15,21 +38,4 @@
       margin: auto;
     }
   
-    .cards-container{
-      display: flex;
-      flex-direction: row;
-      margin-top: 50px;
-    }
-
-    .title-one {
-      position: absolute;
-      transform: rotate(-30deg);
-      left: 60px;
-    }
-
-    .title-two {
-      position: absolute;
-      transform: rotate(30deg);
-      right: 60px;
-    }
   }
