@@ -46,18 +46,18 @@ const Game = () => {
             dealerCards.push(Deck.pop())
             setTotal(playerCards[0].value)
             if (dealerCards.length === 2){
-                playerSum()
+                cardsSum(playerCards, setTotal)
                 clearTimeout()
             } else {dealCards()}
         },800)
     }
     
-    //calculates the sum of player's cards and sets it to total state
-    const playerSum = ()=> {
+    //calculates the sum of player and dealer and sets total in state
+    const cardsSum = (array, state)=> {
         let added = 0
-        for (let i=0; i<playerCards.length; i++){
-            added += playerCards[i].value
-            setTotal(added)
+        for (let i=0; i<array.length; i++){
+            added += array[i].value
+            state(added)
         }}
 
         //checks total of user's cards for black jack or bust
@@ -67,37 +67,19 @@ const Game = () => {
             } if (total>21){
                 setTimeout(busted, 400)
             }
-        })
-    
-    //! checks for dealer total. Should be a way to pass arguments into this as one funtion as opposed to two redundant ones
-    const dealerSum = ()=> {
-        let added = 0
-        for (let i=0; i<dealerCards.length; i++){
-            added += dealerCards[i].value
-            setDealerTotal(added)
-        }
-    }
-
-    
-    
-
-    
-
-    
-      
-
+        })      
 
     //allows player to hit for another card and calculates/updates total
     const Hit = () =>{
         playerCards.push(Deck.pop())
-        playerSum()
+        cardsSum(playerCards, setTotal)
     }
 
     //calls dealer to draw their cards on stand
     const Stand = () =>{
         setStand(true)
         setHitStand(false)
-        dealerSum()
+        cardsSum(dealerCards, setDealerTotal)
     }
 
 
