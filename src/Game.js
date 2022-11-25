@@ -17,6 +17,8 @@ const Game = () => {
     const [total, setTotal] = useState(0)
     const [dealerTotal, setDealerTotal] = useState(0)
     const [blackJack, setBlackJack] = useState(false)
+    const [dealerWins, setDealerWins] = useState(false)
+    const [dealerBusts, setDealerBusts] = useState(false)
     const [bust, setBust] = useState(false)
 
     //shuffles the deck
@@ -53,14 +55,9 @@ const Game = () => {
     
     //calculates the sum of player and dealer and sets total in state
     const cardsSum = (array, state)=> {
-        // let added = 
             let valueArray = []
             array.forEach((item)=>valueArray.push(item.value))
             state(valueArray.reduce((a,b)=>a+b))
-        // for (let i=0; i<array.length; i++){
-        //     added += array[i].value
-        //     state(added)
-        // }
     }
 
         //checks total of user's cards for black jack or bust
@@ -70,8 +67,26 @@ const Game = () => {
             } if (total>21){
                 setTimeout(busted, 400)
             }
-        })      
-     
+        })     
+        
+        useEffect(() => {
+            if (stand && dealerTotal <= total){
+                setTimeout(() =>{dealerCards.push(Deck.pop())
+                cardsSum(dealerCards, setDealerTotal)},1500)
+            } 
+            if (stand && dealerTotal > total && dealerTotal < 22){
+                setDealerWins(true)
+                setStand(false)
+                setTimeout(reset,2000)
+            }
+            if (stand && dealerTotal > 21){
+                setDealerBusts(true)
+                setStand(false)
+                setCash(cash + currentBet*2)
+                setTimeout(reset,2000)
+            }
+        },[stand,dealerTotal,total,cash,currentBet])
+
 
     //allows player to hit for another card and calculates/updates total
     const Hit = () =>{
@@ -86,18 +101,17 @@ const Game = () => {
         cardsSum(dealerCards, setDealerTotal)
     }
 
-
     //when player busts
     const busted = () => {
         setBust(true)
         setHitStand(false)
-        setTimeout(reset, 1500)
+        setTimeout(reset, 2000)
     }
 
     //when player gets blackjack
     const blackJackWin = () => {
         setCash(cash + currentBet)
-        setTimeout(reset, 1500)
+        setTimeout(reset, 2000)
     }
 
     //resets for new hand 
@@ -108,6 +122,8 @@ const Game = () => {
         setBetPlaced(false)
         setBust(false)
         setBlackJack(false)
+        setDealerWins(false)
+        setDealerBusts(false)
         setHitStand(false)
         setStand(false)
     }
@@ -130,6 +146,8 @@ const Game = () => {
         <div className='win-loose-message'>
             {blackJack && <h1>BLACK JACK!</h1>}
             {bust && <h1>{`${total}, Busted! Bummer`}</h1>}
+            {dealerWins && <h1>{`Dealer wins with ${dealerTotal}`}</h1>}
+            {dealerBusts && <h1>Dealer Busts, You Win!</h1>}
         </div>
 
         <div className='dealerCardsContainer'>
