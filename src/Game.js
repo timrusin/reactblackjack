@@ -53,11 +53,15 @@ const Game = () => {
     
     //calculates the sum of player and dealer and sets total in state
     const cardsSum = (array, state)=> {
-        let added = 0
-        for (let i=0; i<array.length; i++){
-            added += array[i].value
-            state(added)
-        }}
+        // let added = 
+            let valueArray = []
+            array.forEach((item)=>valueArray.push(item.value))
+            state(valueArray.reduce((a,b)=>a+b))
+        // for (let i=0; i<array.length; i++){
+        //     added += array[i].value
+        //     state(added)
+        // }
+    }
 
         //checks total of user's cards for black jack or bust
         useEffect(()=>{
@@ -67,6 +71,7 @@ const Game = () => {
                 setTimeout(busted, 400)
             }
         })      
+     
 
     //allows player to hit for another card and calculates/updates total
     const Hit = () =>{
@@ -75,11 +80,12 @@ const Game = () => {
     }
 
     //calls dealer to draw their cards on stand
-    const Stand = () =>{
+    const Stand = () => {
         setStand(true)
         setHitStand(false)
         cardsSum(dealerCards, setDealerTotal)
     }
+
 
     //when player busts
     const busted = () => {
