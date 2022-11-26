@@ -3,8 +3,7 @@ const Deck = [
     id: 1,
     suit: "fa-heart",
     char: "A",
-    value: 1,
-    valueTwo: 11,
+    value: 11,
     color: "red"
 },
 {
@@ -95,8 +94,7 @@ const Deck = [
     id: 14,
     suit: "fa-diamond",
     char: "A",
-    value: 1,
-    valueTwo: 11,
+    value: 11,
     color: "red"
 },
 {
@@ -187,8 +185,7 @@ const Deck = [
     id: 27,
     suit: "fa-spade",
     char: "A",
-    value: 1,
-    valueTwo: 11,
+    value: 11,
     color: "black"
 },
 {
@@ -279,8 +276,7 @@ const Deck = [
     id: 40,
     suit: "fa-club",
     char: "A",
-    value: 1,
-    valueTwo: 11,
+    value: 11,
     color: "black"
 },
 {

@@ -60,6 +60,16 @@ const Game = () => {
             state(valueArray.reduce((a,b)=>a+b))
     }
 
+        useEffect(()=>{
+            let charArray = []
+            playerCards.forEach((card)=>{
+                charArray.push(card.char)
+                if (charArray.includes("A") && total > 21){
+                    setTotal(total - 10)
+                }
+            })
+        })
+
         //checks total of user's cards for black jack or bust
         useEffect(()=>{
             if (total === 21 && playerCards.length === 2){
@@ -67,7 +77,7 @@ const Game = () => {
             } if (total>21){
                 setTimeout(busted, 400)
             }
-        })     
+        },[total])     
         
         useEffect(() => {
             if (stand && dealerTotal <= total){
@@ -110,7 +120,9 @@ const Game = () => {
 
     //when player gets blackjack
     const blackJackWin = () => {
-        setCash(cash + currentBet)
+        setHitStand(false)
+        setBlackJack(true)
+        setCash(cash + currentBet*2.5)
         setTimeout(reset, 2000)
     }
 
