@@ -2,7 +2,6 @@ import React from 'react'
 import './Card.css'
 
 const Card = (props) => {
-  console.log(props.dealerCards);
   if (props.stand === false && props.dealerCards.length <= 2){
     return (
       <div className="cards inner-border"></div>

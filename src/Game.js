@@ -91,7 +91,7 @@ const Game = () => {
             } 
             if (stand && dealerTotal > total && dealerTotal < 22){
                 setDealerWins(true)
-                setStand(false)
+                setTimeout(()=> setStand(false),2000)
                 setTimeout(reset,2000)
             }
             if (stand && dealerTotal > 21){
@@ -170,7 +170,7 @@ const Game = () => {
         <div className='win-loose-message'>
             {blackJack && <h1>BLACK JACK!</h1>}
             {bust && <h1>{`${total}, Busted! Bummer`}</h1>}
-            {dealerWins && <h1>{`Dealer wins with ${dealerTotal}`}</h1>}
+            {dealerWins && <h1>Dealer wins</h1>}
             {dealerBusts && <h1>Dealer Busts, You Win!</h1>}
         </div>
 

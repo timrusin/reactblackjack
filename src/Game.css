@@ -40,7 +40,7 @@
 
 .place-bet {
     position: absolute;
-    top: 2px;
+    top: 6px;
     left: 10px;
     font-size: 40px;
 }
@@ -48,7 +48,7 @@
 .win-loose-message {
     position: absolute;
     z-index: 10;
-    top: 310px;
+    top: 315px;
     left: 10px;
     font-size: 17px;
 }
@@ -63,13 +63,13 @@
 .playerCardsContainer {
     display: flex;
     position: absolute;
-    top: 325px;
+    top: 332px;
     left: 130px;
 }
 
 .dealer-total {
     position: absolute;
-    top: 300px;
+    top: 295px;
     left: 5px;
 }
 
