@@ -134,7 +134,6 @@ const Game = () => {
 
     //resets for new hand 
     const reset = () => {
-        console.log(cardCount);
         playerCards.forEach((card)=>Deck.unshift(card))
         playerCards = []
         dealerCards.forEach((card)=> Deck.unshift(card))
@@ -177,7 +176,7 @@ const Game = () => {
 
         <div className='dealerCardsContainer'>
         {dealerCards.map(item => {
-                return <Card key={item.id} {...item}/>
+                return <Card key={item.id} stand={stand} dealerCards={dealerCards} {...item} />
            })}
         </div>
 
