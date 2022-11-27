@@ -6,6 +6,7 @@ import './Game.css'
 //dealer and player hands in global scope
 let playerCards = []
 let dealerCards = []
+let cardCount = 0
 
 const Game = () => {
     //!Too much state management still
@@ -44,7 +45,9 @@ const Game = () => {
         setTimeout(()=> {
             setTimeout(()=>setHitStand(true),1200)
             playerCards.push(Deck.pop())
+            cardCount ++
             dealerCards.push(Deck.pop())
+            cardCount ++
             setTotal(playerCards[0].value) //adds the value of the first card in the displayed total
             if (dealerCards.length === 2){
                 cardsSum(playerCards, setTotal)
@@ -83,6 +86,7 @@ const Game = () => {
         useEffect(() => {
             if (stand && dealerTotal <= total){
                 setTimeout(() =>{dealerCards.push(Deck.pop())
+                    cardCount ++
                 cardsSum(dealerCards, setDealerTotal)},1500)
             } 
             if (stand && dealerTotal > total && dealerTotal < 22){
@@ -103,6 +107,7 @@ const Game = () => {
     const Hit = () =>{
         playerCards.push(Deck.pop())
         cardsSum(playerCards, setTotal)
+        cardCount ++
     }
 
     //calls dealer to draw their cards on stand
@@ -129,8 +134,15 @@ const Game = () => {
 
     //resets for new hand 
     const reset = () => {
+        console.log(cardCount);
+        playerCards.forEach((card)=>Deck.unshift(card))
         playerCards = []
+        dealerCards.forEach((card)=> Deck.unshift(card))
         dealerCards = []
+        if (cardCount >= 52){
+            Deck.sort((a,b) => 0.5 - Math.random())
+            cardCount = 0
+        }
         setTotal(0)
         setBetPlaced(false)
         setBust(false)
