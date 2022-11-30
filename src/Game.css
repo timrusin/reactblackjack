@@ -35,15 +35,16 @@
 
 .bet-button {
     position: absolute; 
+    margin-top: 5px;
     right: 20px;
     top: 77px;
 }
 
 .place-bet {
     position: absolute;
-    top: 6px;
-    left: 10px;
-    font-size: 40px;
+    top: 10px;
+    left: 20px;
+    font-size: 35px;
 }
 
 .win-loose-message {

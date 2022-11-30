@@ -1,7 +1,8 @@
 .blank-card {
     position: absolute;
-    color: rgb(0, 0, 0);
+    color: #0c2c3b;
     text-align: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 10px;
     left: 130px;
     top: 30px;

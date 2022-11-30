@@ -11,7 +11,7 @@ let cardCount = 0
 
 const Game = () => {
     //!Too much state management still
-    const [cash, setCash] = useState(1000)
+    const [cash, setCash] = useState(500)
     const [currentBet, setCurrentBet] = useState(10)
     const [betPlaced, setBetPlaced] = useState(false)
     const [stand, setStand] = useState (false)
@@ -65,15 +65,15 @@ const Game = () => {
     }
 
         //!Checks for Ace card and accomodates for 1 value, new total isn't being seen by the folowoing useEffect though.
-        // useEffect(()=>{
-        //     let charArray = []
-        //     playerCards.forEach((card)=>{
-        //         charArray.push(card.char)
-        //         if (charArray.includes("A") && total > 21){
-        //             setTotal(total - 10)
-        //         }
-        //     })
-        // })
+        useEffect(()=>{
+            let charArray = []
+            playerCards.forEach((card)=>{
+                charArray.push(card.char)
+                if (charArray.includes("A") && total > 21){
+                    setTotal(total - 10)
+                }
+            })
+        })
 
         //checks total of user's cards for black jack or bust
         useEffect(()=>{
@@ -155,7 +155,7 @@ const Game = () => {
     }
 
   return (
-    <div className='game-page-container'>
+    <div className='game-page-container fade'>
         <div className='cash'>{ `$ ${cash}` }</div>
             <form className='bet'>
                 <select onChange={handleChange} className='bet-form'>
@@ -166,7 +166,7 @@ const Game = () => {
                     <option value="500">$500</option>
                 </select>
             </form>
-        {!betPlaced && <button className='bet-button' onClick={placeBet}>PLACE BET</button>}
+        {!betPlaced && <button className='bet-button' onClick={placeBet}>DEAL</button>}
         {!betPlaced && <h1 className='place-bet'>Place Your Bet</h1>}
        
         <div className='win-loose-message'>
