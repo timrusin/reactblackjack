@@ -65,15 +65,15 @@ const Game = () => {
     }
 
         //!Checks for Ace card and accomodates for 1 value, new total isn't being seen by the folowoing useEffect though.
-        useEffect(()=>{
-            let charArray = []
-            playerCards.forEach((card)=>{
-                charArray.push(card.char)
-                if (charArray.includes("A") && total > 21){
-                    setTotal(total - 10)
-                }
-            })
-        })
+        // useEffect(()=>{
+        //     let charArray = []
+        //     playerCards.forEach((card)=>{
+        //         charArray.push(card.char)
+        //         if (charArray.includes("A") && total > 21){
+        //             setTotal(total - 10)
+        //         }
+        //     })
+        // })
 
         //checks total of user's cards for black jack or bust
         useEffect(()=>{
