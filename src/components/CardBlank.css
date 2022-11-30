@@ -1,0 +1,6 @@
+.blank-card {
+    position: absolute;
+    left: 130px;
+    top: 30px;
+    z-index: 91;
+}

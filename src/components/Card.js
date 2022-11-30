@@ -2,11 +2,6 @@ import React from 'react'
 import './Card.css'
 
 const Card = (props) => {
-  if (props.stand === false && props.dealerCards.length <= 2){
-    return (
-      <div className="cards inner-border"></div>
-    )
-  } else {
   return (
     <div className="cards inner-border">
     <div className="top-left">
@@ -24,7 +19,7 @@ const Card = (props) => {
      </div>
   </div>
   )
-  }
 }
+
 
 export default Card

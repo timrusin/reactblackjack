@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import Deck from './data/Deck'
 import Card from './components/Card'
+import CardBlank from './components/CardBlank'
 import './Game.css'
 
 //dealer and player hands in global scope
@@ -82,7 +83,8 @@ const Game = () => {
                 setTimeout(busted, 400)
             }
         })     
-        
+
+        //Calculates dealers hand
         useEffect(() => {
             if (stand && dealerTotal <= total){
                 setTimeout(() =>{dealerCards.push(Deck.pop())
@@ -128,11 +130,11 @@ const Game = () => {
     const blackJackWin = () => {
         setHitStand(false)
         setBlackJack(true)
-        setCash(cash + currentBet*2.5)
+        setCash(cash + currentBet*.5)
         setTimeout(reset, 2000)
     }
 
-    //resets for new hand 
+    //resets for new hand - pushes hands to beginning of deck and shuffles deck after 52 cards have been gone through.
     const reset = () => {
         playerCards.forEach((card)=>Deck.unshift(card))
         playerCards = []
@@ -174,9 +176,10 @@ const Game = () => {
             {dealerBusts && <h1>Dealer Busts, You Win!</h1>}
         </div>
 
+        {betPlaced && <CardBlank stand = {stand} dealerCards={dealerCards}/>}
         <div className='dealerCardsContainer'>
         {dealerCards.map(item => {
-                return <Card key={item.id} stand={stand} dealerCards={dealerCards} {...item} />
+                return <Card key={item.id} {...item}/>
            })}
         </div>
 
