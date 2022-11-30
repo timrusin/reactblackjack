@@ -1,6 +1,14 @@
 .blank-card {
     position: absolute;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    font-size: 10px;
     left: 130px;
     top: 30px;
     z-index: 91;
+}
+
+.blank-title{
+    position: relative;
+    top: 75px;
 }

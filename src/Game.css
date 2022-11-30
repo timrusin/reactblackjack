@@ -1,7 +1,8 @@
 .game-page-container {
     width: 100vw;
     height: 100vh;
-    /* background-image: url('/public/images/tabletest.jpeg'); */
+    background-image: url('/public/images/tabletestblue.jpeg');
+    background-position: center;
     background-color: rgb(6, 100, 11);
     background-size: cover;
 }
