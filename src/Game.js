@@ -166,7 +166,7 @@ const Game = () => {
                     <option value="500">$500</option>
                 </select>
             </form>
-        {!betPlaced && <button className='bet-button' onClick={placeBet}>DEAL</button>}
+        {!betPlaced && <button className='deal-button' onClick={placeBet}>DEAL</button>}
         {!betPlaced && <h1 className='place-bet'>Place Your Bet</h1>}
        
         <div className='win-loose-message'>
