@@ -1,7 +1,9 @@
 .game-title {
-  font-family: nabla, Arial, Helvetica, sans-serif;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-size: 4vw;
   color: goldenrod;
 }
+
 .cards-container{
   display: flex;
   flex-direction: row;
@@ -28,7 +30,7 @@
   }
   @media screen and (max-width: 800px) {
     .game-title {
-      font-size: 8vw;
+      font-size: 10vw;
       margin-bottom: 20px;
     }
   
