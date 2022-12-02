@@ -179,7 +179,7 @@ const Game = () => {
         {betPlaced && <CardBlank stand = {stand} dealerCards={dealerCards}/>}
         <div className='dealerCardsContainer'>
         {dealerCards.map(item => {
-                return <Card key={item.id} {...item}/>
+                return <Card key={item.id} dealerTotal={dealerTotal} {...item}/>
            })}
         </div>
 
@@ -187,7 +187,7 @@ const Game = () => {
 
         <div className='playerCardsContainer'>
            {playerCards.map(item => {
-                return <Card key={item.id} {...item}/>
+                return <Card key={item.id} total={total} {...item}/>
            })}
         </div>
         
