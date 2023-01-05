@@ -7,7 +7,7 @@ const cardBlank = (props) => {
         return (
           <div className="blank-card">
             <div className="cards inner-border">
-              <h1 className='blank-title'>Black Jack React</h1>
+              <h1 className='blank-title'>Double Down</h1>
             </div>
           </div>
         );

@@ -57,10 +57,30 @@ const Game = () => {
         },800)
     }
     
+    //Calculates dealers hand
+    useEffect(() => {
+        if (stand && dealerTotal <= total){
+            setTimeout(() =>{dealerCards.push(Deck.pop())
+                cardCount ++
+            cardsSum(dealerCards, setDealerTotal)},1500)
+        } 
+        if (stand && dealerTotal > total && dealerTotal < 22){
+            setDealerWins(true)
+            setTimeout(()=> setStand(false),2000)
+            setTimeout(reset,2000)
+        }
+        if (stand && dealerTotal > 21){
+            setDealerBusts(true)
+            setStand(false)
+            setCash(cash + currentBet*2)
+            setTimeout(reset,2000)
+        }
+    },[stand,dealerTotal,total,cash,currentBet])
+
     //calculates the sum of player and dealer and sets total in state
     const cardsSum = (array, state)=> {
             let valueArray = []
-            array.forEach((item)=>valueArray.push(item.value))
+            array.forEach((item)=> valueArray.push(item.value))
             state(valueArray.reduce((a,b)=>a+b))
     }
 
@@ -84,34 +104,13 @@ const Game = () => {
             }
         })     
 
-        //Calculates dealers hand
-        useEffect(() => {
-            if (stand && dealerTotal <= total){
-                setTimeout(() =>{dealerCards.push(Deck.pop())
-                    cardCount ++
-                cardsSum(dealerCards, setDealerTotal)},1500)
-            } 
-            if (stand && dealerTotal > total && dealerTotal < 22){
-                setDealerWins(true)
-                setTimeout(()=> setStand(false),2000)
-                setTimeout(reset,2000)
-            }
-            if (stand && dealerTotal > 21){
-                setDealerBusts(true)
-                setStand(false)
-                setCash(cash + currentBet*2)
-                setTimeout(reset,2000)
-            }
-        },[stand,dealerTotal,total,cash,currentBet])
-
-
     //allows player to hit for another card and calculates/updates total
     const Hit = () =>{
         playerCards.push(Deck.pop())
         cardsSum(playerCards, setTotal)
         cardCount ++
     }
-
+ 
     //calls dealer to draw their cards on stand
     const Stand = () => {
         setStand(true)
@@ -140,7 +139,7 @@ const Game = () => {
         playerCards = []
         dealerCards.forEach((card)=> Deck.unshift(card))
         dealerCards = []
-        if (cardCount >= 52){
+        if (cardCount >= 52){  //This fixed the issue with the game crashing after cycling through all 52 cards in the Deck
             Deck.sort((a,b) => 0.5 - Math.random())
             cardCount = 0
         }
@@ -156,6 +155,7 @@ const Game = () => {
 
   return (
     <div className='game-page-container fade'>
+        <p style={{color:"grey", marginLeft:"20px"}}>Beta Version</p>
         <div className='cash'>{ `$ ${cash}` }</div>
             <form className='bet'>
                 <select onChange={handleChange} className='bet-form'>
@@ -179,7 +179,7 @@ const Game = () => {
         {betPlaced && <CardBlank stand = {stand} dealerCards={dealerCards}/>}
         <div className='dealerCardsContainer'>
         {dealerCards.map(item => {
-                return <Card key={item.id} dealerTotal={dealerTotal} {...item}/>
+                return <Card key={item.id} {...item}/>
            })}
         </div>
 
@@ -187,7 +187,7 @@ const Game = () => {
 
         <div className='playerCardsContainer'>
            {playerCards.map(item => {
-                return <Card key={item.id} total={total} {...item}/>
+                return <Card key={item.id} {...item}/>
            })}
         </div>
         

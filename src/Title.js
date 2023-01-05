@@ -19,7 +19,7 @@ function Title() {
 
   return (
     <div className="App">
-      <h1 className='game-title'>BLACK JACK REACT</h1>
+      <h1 className='game-title'>BLACK JACK</h1>
 
       <Link to='/game'><button className='play-button' style={{opacity: randomOpacity}}>PLAY</button></Link>
         
