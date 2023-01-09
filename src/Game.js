@@ -160,6 +160,12 @@ const Game = () => {
         setStand(false)
     }
 
+    const gameOverReset = () => {
+        reset()
+        setCash(500)
+        setGameOver(false)
+    }
+
   return (
     <div className='game-page-container fade'>
         <p style={{color:"grey", marginLeft:"20px"}}>Beta Version</p>
