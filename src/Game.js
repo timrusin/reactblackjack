@@ -179,7 +179,7 @@ const Game = () => {
                     {cash >= 100 && <option value="100">$100</option>}
                     {cash >= 200 && <option value="200">$200</option>}
                     {cash >= 500 && <option value="500">$500</option>}
-                    {cash !== 500 && <option value = {cash}>ALL IN</option>}
+                    {cash > 0 && <option value = {cash}>ALL IN</option>}
                 </select>
             </form>}
         {!betPlaced && <button className='deal-button' onClick={!gameOver ? placeBet : gameOverReset}>{!gameOver ? "DEAL" : "Play Again"}</button>}
