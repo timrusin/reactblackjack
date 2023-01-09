@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { redirect } from "react-router-dom"
 import Deck from './data/Deck'
 import Card from './components/Card'
 import CardBlank from './components/CardBlank'
@@ -22,6 +23,7 @@ const Game = () => {
     const [dealerWins, setDealerWins] = useState(false)
     const [dealerBusts, setDealerBusts] = useState(false)
     const [bust, setBust] = useState(false)
+    const [gameOver, setGameOver] = useState(false)
 
     //shuffles the deck
     Deck.sort((a,b) => 0.5 - Math.random())
@@ -64,7 +66,7 @@ const Game = () => {
             state(valueArray.reduce((a,b)=>a+b))
     }
 
-        //!Checks for Ace card and accomodates for 1 value, new total isn't being seen by the folowoing useEffect though.
+        // !Checks for Ace card and accomodates for 1 value, new total isn't being seen by the folowoing useEffect though.
         // useEffect(()=>{
         //     let charArray = []
         //     playerCards.forEach((card)=>{
@@ -103,6 +105,13 @@ const Game = () => {
                 setTimeout(reset,2000)
             }
         },[stand,dealerTotal,total,cash,currentBet])
+
+        useEffect(()=>{
+           if (cash === 0 && (bust || dealerWins)){
+            setGameOver(true)
+            redirect('/')
+        }
+        },[cash, bust, dealerWins])
 
 
     //allows player to hit for another card and calculates/updates total
@@ -154,6 +163,12 @@ const Game = () => {
         setStand(false)
     }
 
+    const gameOverReset = () => {
+        reset()
+        setCash(500)
+        setGameOver(false)
+    }
+
   return (
     <div className='game-page-container fade'>
         <div className='cash'>{ `$ ${cash}` }</div>
@@ -167,7 +182,7 @@ const Game = () => {
                     {cash !== 500 && <option value = {cash}>ALL IN</option>}
                 </select>
             </form>
-        {!betPlaced && <button className='deal-button' onClick={placeBet}>DEAL</button>}
+        {!betPlaced && <button className='deal-button' onClick={!gameOver ? placeBet : gameOverReset}>{!gameOver ? "DEAL" : "Play Again"}</button>}
         {!betPlaced && <h1 className='place-bet'>Place Your Bet</h1>}
        
         <div className='win-loose-message'>
@@ -175,6 +190,7 @@ const Game = () => {
             {bust && <h1>{`${total}, Busted! Bummer`}</h1>}
             {dealerWins && <h1>Dealer wins</h1>}
             {dealerBusts && <h1>Dealer Busts, You Win!</h1>}
+            {gameOver && <h1>Game Over</h1>}
         </div>
 
         {betPlaced && <CardBlank stand = {stand} dealerCards={dealerCards}/>}
