@@ -159,12 +159,12 @@ const Game = () => {
         <div className='cash'>{ `$ ${cash}` }</div>
             <form className='bet'>
                 <select onChange={handleChange} className='bet-form'>
-                    {cash >=10 && <option value="10">$10</option>}
-                    {cash >=50 && <option value="50">$50</option>}
+                    {cash >= 10 && <option value="10">$10</option>}
+                    {cash >= 50 && <option value="50">$50</option>}
                     {cash >= 100 && <option value="100">$100</option>}
                     {cash >= 200 && <option value="200">$200</option>}
                     {cash >= 500 && <option value="500">$500</option>}
-                    <option value = {cash}>ALL IN</option>
+                    {cash !== 500 && <option value = {cash}>ALL IN</option>}
                 </select>
             </form>
         {!betPlaced && <button className='deal-button' onClick={placeBet}>DEAL</button>}
