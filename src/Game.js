@@ -107,9 +107,12 @@ const Game = () => {
 
         useEffect(()=>{
            if (cash === 0 && (bust || dealerWins)){
+            setBetPlaced(true)
+            setTimeout(()=> {
             setGameOver(true)
+           },2000)
         }
-        },[cash, bust, dealerWins])
+        },[cash, bust, dealerWins, betPlaced])
 
 
     //allows player to hit for another card and calculates/updates total
@@ -188,7 +191,11 @@ const Game = () => {
             {bust && <h1>{`${total}, Busted! Bummer`}</h1>}
             {dealerWins && <h1>Dealer wins</h1>}
             {dealerBusts && <h1>Dealer Busts, You Win!</h1>}
-            {gameOver && <h1>Game Over</h1>}
+        </div>
+        <div className='game-over-message-container'>
+            <div>
+                {gameOver && <h1>Game Over</h1>}
+            </div>
         </div>
 
         {betPlaced && <CardBlank stand = {stand} dealerCards={dealerCards}/>}
