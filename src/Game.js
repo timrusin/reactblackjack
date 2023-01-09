@@ -188,6 +188,7 @@ const Game = () => {
             {bust && <h1>{`${total}, Busted! Bummer`}</h1>}
             {dealerWins && <h1>Dealer wins</h1>}
             {dealerBusts && <h1>Dealer Busts, You Win!</h1>}
+            {gameOver && <h1>Game Over</h1>}
         </div>
 
         {betPlaced && <CardBlank stand = {stand} dealerCards={dealerCards}/>}
