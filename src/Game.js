@@ -58,34 +58,14 @@ const Game = () => {
         },800)
     }
     
-    //Calculates dealers hand
-    useEffect(() => {
-        if (stand && dealerTotal <= total){
-            setTimeout(() =>{dealerCards.push(Deck.pop())
-                cardCount ++
-            cardsSum(dealerCards, setDealerTotal)},1500)
-        } 
-        if (stand && dealerTotal > total && dealerTotal < 22){
-            setDealerWins(true)
-            setTimeout(()=> setStand(false),2000)
-            setTimeout(reset,2000)
-        }
-        if (stand && dealerTotal > 21){
-            setDealerBusts(true)
-            setStand(false)
-            setCash(cash + currentBet*2)
-            setTimeout(reset,2000)
-        }
-    },[stand,dealerTotal,total,cash,currentBet])
-
     //calculates the sum of player and dealer and sets total in state
     const cardsSum = (array, state)=> {
             let valueArray = []
-            array.forEach((item)=> valueArray.push(item.value))
+            array.forEach((item)=>valueArray.push(item.value))
             state(valueArray.reduce((a,b)=>a+b))
     }
 
-        //!Checks for Ace card and accomodates for 1 value, new total isn't being seen by the folowoing useEffect though.
+        // !Checks for Ace card and accomodates for 1 value, new total isn't being seen by the folowoing useEffect though.
         // useEffect(()=>{
         //     let charArray = []
         //     playerCards.forEach((card)=>{
@@ -105,11 +85,34 @@ const Game = () => {
             }
         })     
 
+        //Calculates dealers hand
+        useEffect(() => {
+            if (stand && dealerTotal <= total){
+                setTimeout(() =>{dealerCards.push(Deck.pop())
+                    cardCount ++
+                cardsSum(dealerCards, setDealerTotal)},1500)
+            } 
+            if (stand && dealerTotal > total && dealerTotal < 22){
+                setDealerWins(true)
+                setTimeout(()=> setStand(false),2000)
+                setTimeout(reset,2000)
+            }
+            if (stand && dealerTotal > 21){
+                setDealerBusts(true)
+                setStand(false)
+                setCash(cash + currentBet*2)
+                setTimeout(reset,2000)
+            }
+        },[stand,dealerTotal,total,cash,currentBet])
+
         useEffect(()=>{
-            if (cash === 0 && (bust || dealerWins)){
-             setGameOver(true)
-         }
-         },[cash, bust, dealerWins])
+           if (cash === 0 && (bust || dealerWins)){
+            setTimeout(()=> {
+            setGameOver(true)
+           },2000)
+        }
+        },[cash, bust, dealerWins])
+
 
     //allows player to hit for another card and calculates/updates total
     const Hit = () =>{
@@ -117,7 +120,7 @@ const Game = () => {
         cardsSum(playerCards, setTotal)
         cardCount ++
     }
- 
+
     //calls dealer to draw their cards on stand
     const Stand = () => {
         setStand(true)
@@ -146,7 +149,7 @@ const Game = () => {
         playerCards = []
         dealerCards.forEach((card)=> Deck.unshift(card))
         dealerCards = []
-        if (cardCount >= 52){  //This fixed the issue with the game crashing after cycling through all 52 cards in the Deck
+        if (cardCount >= 52){
             Deck.sort((a,b) => 0.5 - Math.random())
             cardCount = 0
         }
@@ -168,33 +171,36 @@ const Game = () => {
 
   return (
     <div className='game-page-container fade'>
-        <p style={{color:"grey", marginLeft:"20px"}}>Beta Version</p>
-        <div className='cash'>{ `$ ${cash}` }</div>
-            <form className='bet'>
+        <div className={gameOver?'hidden':'cash'}>{ `$ ${cash}` }</div>
+            {!gameOver && <form className='bet'>
                 <select onChange={handleChange} className='bet-form'>
-                    {cash >= 10 && <option value="10">$10</option>}
-                    {cash >= 50 && <option value="50">$50</option>}
+                    {cash >=10 && <option value="10">$10</option>}
+                    {cash >=50 && <option value="50">$50</option>}
                     {cash >= 100 && <option value="100">$100</option>}
                     {cash >= 200 && <option value="200">$200</option>}
                     {cash >= 500 && <option value="500">$500</option>}
                     {cash !== 500 && <option value = {cash}>ALL IN</option>}
                 </select>
-            </form>
+            </form>}
         {!betPlaced && <button className='deal-button' onClick={!gameOver ? placeBet : gameOverReset}>{!gameOver ? "DEAL" : "Play Again"}</button>}
-        {!betPlaced && <h1 className='place-bet'>Place Your Bet</h1>}
+        {!betPlaced && <h1 className={gameOver?'hidden':'place-bet'}>Place Your Bet</h1>}
        
         <div className='win-loose-message'>
             {blackJack && <h1>BLACK JACK!</h1>}
             {bust && <h1>{`${total}, Busted! Bummer`}</h1>}
             {dealerWins && <h1>Dealer wins</h1>}
             {dealerBusts && <h1>Dealer Busts, You Win!</h1>}
-            {gameOver && <h1>Game Over</h1>}
+        </div>
+        <div className='game-over-message-container'>
+            <div>
+                {gameOver && <h1>Game Over</h1>}
+            </div>
         </div>
 
         {betPlaced && <CardBlank stand = {stand} dealerCards={dealerCards}/>}
         <div className='dealerCardsContainer'>
         {dealerCards.map(item => {
-                return <Card key={item.id} {...item}/>
+                return <Card key={item.id} dealerTotal={dealerTotal} {...item}/>
            })}
         </div>
 
@@ -202,7 +208,7 @@ const Game = () => {
 
         <div className='playerCardsContainer'>
            {playerCards.map(item => {
-                return <Card key={item.id} {...item}/>
+                return <Card key={item.id} total={total} {...item}/>
            })}
         </div>
         
