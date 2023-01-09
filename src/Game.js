@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { redirect } from "react-router-dom"
 import Deck from './data/Deck'
 import Card from './components/Card'
 import CardBlank from './components/CardBlank'
@@ -109,7 +108,6 @@ const Game = () => {
         useEffect(()=>{
            if (cash === 0 && (bust || dealerWins)){
             setGameOver(true)
-            redirect('/')
         }
         },[cash, bust, dealerWins])
 
