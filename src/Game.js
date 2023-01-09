@@ -107,12 +107,11 @@ const Game = () => {
 
         useEffect(()=>{
            if (cash === 0 && (bust || dealerWins)){
-            setBetPlaced(true)
             setTimeout(()=> {
             setGameOver(true)
            },2000)
         }
-        },[cash, bust, dealerWins, betPlaced])
+        },[cash, bust, dealerWins])
 
 
     //allows player to hit for another card and calculates/updates total
@@ -172,8 +171,8 @@ const Game = () => {
 
   return (
     <div className='game-page-container fade'>
-        <div className='cash'>{ `$ ${cash}` }</div>
-            <form className='bet'>
+        <div className={gameOver?'hidden':'cash'}>{ `$ ${cash}` }</div>
+            {!gameOver && <form className='bet'>
                 <select onChange={handleChange} className='bet-form'>
                     {cash >=10 && <option value="10">$10</option>}
                     {cash >=50 && <option value="50">$50</option>}
@@ -182,9 +181,9 @@ const Game = () => {
                     {cash >= 500 && <option value="500">$500</option>}
                     {cash !== 500 && <option value = {cash}>ALL IN</option>}
                 </select>
-            </form>
+            </form>}
         {!betPlaced && <button className='deal-button' onClick={!gameOver ? placeBet : gameOverReset}>{!gameOver ? "DEAL" : "Play Again"}</button>}
-        {!betPlaced && <h1 className='place-bet'>Place Your Bet</h1>}
+        {!betPlaced && <h1 className={gameOver?'hidden':'place-bet'}>Place Your Bet</h1>}
        
         <div className='win-loose-message'>
             {blackJack && <h1>BLACK JACK!</h1>}
