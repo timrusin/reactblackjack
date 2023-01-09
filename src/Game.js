@@ -22,6 +22,7 @@ const Game = () => {
     const [dealerWins, setDealerWins] = useState(false)
     const [dealerBusts, setDealerBusts] = useState(false)
     const [bust, setBust] = useState(false)
+    const [gameOver, setGameOver] = useState(false)
 
     //shuffles the deck
     Deck.sort((a,b) => 0.5 - Math.random())
@@ -103,6 +104,12 @@ const Game = () => {
                 setTimeout(busted, 400)
             }
         })     
+
+        useEffect(()=>{
+            if (cash === 0 && (bust || dealerWins)){
+             setGameOver(true)
+         }
+         },[cash, bust, dealerWins])
 
     //allows player to hit for another card and calculates/updates total
     const Hit = () =>{
